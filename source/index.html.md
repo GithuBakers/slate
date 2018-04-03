@@ -422,18 +422,18 @@ true/false
 > RETURN
 
 ```json
-[
-  {
-    "task_name":string,
-    "cover":url,
-    "type":(RECT,DESC,EDGE),
-    "limit":int 单个用户最多标注的数量,
-    "reward":int credit/10,
-    "requirement":string,
-    "actual_number":现在已标注多少张了,
-    "total_reward":获取的所有的奖励数
-  }
-]
+
+{
+  "task_name":string,
+  "cover":url,
+  "type":(RECT,DESC,EDGE),
+  "limit":int 单个用户最多标注的数量,
+  "reward":int credit/10,
+  "requirement":string,
+  "actual_number":现在已标注多少张了,
+  "total_reward":获取的所有的奖励数
+}
+
 
 ```
 
