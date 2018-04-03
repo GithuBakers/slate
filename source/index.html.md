@@ -18,7 +18,7 @@ toc_footers:
 search: true
 ---
 
-# 迭代二文档 (/v2/api)
+# 迭代二文档 (/api/v2)
 
 # ALL
 
