@@ -46,6 +46,11 @@ html, body {
   border-radius: 40px;
   width: 20px;
 }
+.highlight{
+  .err{
+    color: white;
+  }
+}
 
 .toc-wrapper {
   transition: left 0.3s ease-in-out;

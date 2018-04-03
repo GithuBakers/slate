@@ -2,238 +2,443 @@
 title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
-  - javascript
+  # - shell
+  # - ruby
+  # - python
+  # - javascript
+  - json
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
-includes:
-  - errors
+# includes:
+  # - errors
 
 search: true
 ---
 
-# Introduction
+# 迭代二文档 (/v2/api)
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+# ALL
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+## 注册
 
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+**HTTP REQUEST**
 
-# Authentication
+`POST /user/new_user`
 
-> To authorize, use this code:
+> BODY
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
+```json
+{
+  "user_name":string,
+  "role":string(worker, admin, initiator),
+  "password":(加密后),
+  "avator":url,
+  "nick_name":string
+}
 ```
 
-```python
-import kittn
+> RETURN
 
-api = kittn.authorize('meowmeowmeow')
+```json
+true/false
 ```
 
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+
+## 登录
+
+**HTTP REQUEST**
+
+`POST /user/tokens`
+
+> BODY
+
+```json
+{
+  "user_name":string,
+  "password":（加密后）
+}
 ```
 
-```javascript
-const kittn = require('kittn');
+> RETURN
 
-let api = kittn.authorize('meowmeowmeow');
+```json
+{
+  "role":参见上面,
+  "token":xxxxxx
+}
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
+## 查看个人信息
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+**HTTP REQUEST**
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+`GET /user/information/{user_name}`
 
-`Authorization: meowmeowmeow`
+> RETURN
 
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
+```json
+{
+  "user_name":string,
+  "role":string(worker, admin, initiator),
+  "avator":url,
+  "nick_name":string,
+  "credict":积分,
+  "rank":用户的 排名？
+}
 
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
 ```
 
-```python
-import kittn
+## 修改个人信息
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
+**HTTP REQUEST**
+
+`POST /user/information/{user_name}`
+
+> BODY
+
+```json
+{
+  "avator":url,
+  "nick_name":string
+}
+
 ```
 
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
+> RETURN
+
+```json
+true/false
+
 ```
 
-```javascript
-const kittn = require('kittn');
+## 修改密码
 
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+
+**HTTP REQUEST**
+
+`POST /user/password/{user_name}`
+
+> BODY
+
+```json
+{
+  "ori_password":加密后的,
+  "new_password":加密后的新密码
+}
+
 ```
 
-> The above command returns JSON structured like this:
+> RETURN
+
+```json
+true/false
+```
+
+# 发起者
+
+## 新建任务
+
+**HTTP REQUEST**
+
+`POST /initiator/task/running_task`
+
+> BODY
+
+```json
+{
+  "task_name":string,
+  "initiator_name":string,
+  "cover":url,
+  "type":(RECT,DESC,EDGE),
+  "data_set":[
+    {
+      "id":图片id,
+      "url":url
+    },
+    ...
+  ],
+  "aim":int 目标标注人数/张,
+  "limit":int 单个用户最多标注的数量,
+  "reward":int credit/10,
+  "requirement":string //任务要求
+
+}
+
+```
+
+> RETURN
+
+```json
+true/false
+```
+
+## 发起者查看自己的已发起任务列表
+
+**HTTP REQUEST**
+
+`GET /initiator/task`
+
+**参数说明**
+
+|参数名|参数意义|参数类型|
+|-----|---|----|
+|finished|是否已结束|bool|
+
+> RETURN
 
 ```json
 [
   {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
+    "task_name":string,
+    "cover":url,
+    "type":(RECT,DESC,EDGE),
+    "completeness":float,//达标比例
+    "finished":bool//状态
   },
+  ...
+]
+
+```
+
+
+## 发起者查看自己发起的某一具体任务
+
+**HTTP REQUEST**
+
+`GET /initiator/task/{task_name}`
+
+> RETURN
+
+```json
+
+{
+  "task_name":string,
+  "initiator_name":string,
+  "cover":url,
+  "type":(RECT,DESC,EDGE),
+  "aim":int 目标标注人数,
+  "limit":int 单个用户最多标注的数量,
+  "reward":int credit/10,
+  "requirement":string , //任务要求
+  "total_reward":发出的总的reward,
+  "completeness":float,//达标比例
+  "result":url,//结果所在地
+  "finished":bool//状态
+
+}
+
+
+```
+
+
+## 发起者结束自己的某一任务
+
+**HTTP REQUEST**
+
+`POST /initiator/task/finished_task`
+
+> BODY
+
+```json
+{
+  "task_name":string
+}
+```
+
+> RETURN
+
+```json
+{
+  "task_name":string,
+  "initiator_name":string,
+  "cover":url,
+  "type":(RECT,DESC,EDGE),
+  "aim":int 目标标注人数,
+  "limit":int 单个用户最多标注的数量,
+  "reward":int credit/10,
+  "requirement":string ,
+  "total_reward":发出的总的reward,
+  "completeness":float,
+  "result":url
+
+}
+```
+
+<!-- # 回收任务
+
+GET /initiator/task/finished_task/{task_name}
+
+```json
+{
+  "result":url //数据结果的url，通常放在oss上
+}
+``` -->
+
+
+#  工人
+
+## 获取任务列表
+
+**HTTP REQUEST**
+
+`GET /worker/task_list`
+
+> RETURN
+
+```json
+[
   {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
+    "cover":任务封面,
+    "type":任务类型,
+    "task_name":任务名,
+    "reward":奖励
+  },
+  ...
+]
+
+```
+
+## 获取任务详情
+
+**HTTP REQUEST**
+
+`GET /worker/task/{task_name}`
+
+> RETURN
+
+```json
+{
+  "task_name":string,
+  "cover":url,
+  "type":(RECT,DESC,EDGE),
+  "limit":int 单个用户最多标注的数量,
+  "reward":int credit/10,
+  "requirement":string 
+}
+
+```
+
+## 接受任务
+
+**HTTP REQUEST**
+
+`POST /worker/task/received_task/{task_name}`
+
+> RETURN
+
+```json
+true/false
+```
+
+
+
+
+## 获取任务图片列表
+
+**HTTP REQUEST**
+
+`GET /worker/task/received_task/img/{task_name}`
+
+> RETURN
+
+```json
+[ 
+  { 
+  "id":图片ID,
+  "name":(String)图片名,
+  "raw":(String)原图的URL 
+  }, 
+  ...(若干个)
 ]
 ```
 
-This endpoint retrieves all kittens.
 
-### HTTP Request
+## 提交某一张标注
 
-`GET http://example.com/api/kittens`
+**HTTP REQUEST**
 
-### Query Parameters
+`POST /worker/task/received_task/{task_name}/{img_id}`
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
+> BODY
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+
+  "id":图片id,
+  "tags":
+  [
+    {
+      "id":(String)标注的ID,
+      "mark":{
+        "type":（EDGE, DESC, RECT)
+      },//某种类型的标记，**必须包含**类型字段
+      "comment":备注
+    },
+    ...
+  ]
 }
 ```
 
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
+> RETURN
 
 ```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
+true/false
 ```
 
-This endpoint deletes a specific kitten.
+## 查看已接受任务列表
 
-### HTTP Request
+**HTTP REQUEST**
 
-`DELETE http://example.com/kittens/<ID>`
+`GET /worker/task/received_task`
 
-### URL Parameters
+> RETURN
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
+```json
+[
+  {
+    "task_name":string,
+    "cover":url,
+    "type":(RECT,DESC,EDGE),
+    "actual_number":现在已标注多少张了,
+    "total_reward":获取的所有的奖励数,
+    "finished":bool
+    
+  },
+  ...
+]
+
+```
+
+
+## 查看某一已接受任务
+
+**HTTP REQUEST**
+
+`GET /worker/task/received_task/{task_name}`
+
+> RETURN
+
+```json
+[
+  {
+    "task_name":string,
+    "cover":url,
+    "type":(RECT,DESC,EDGE),
+    "limit":int 单个用户最多标注的数量,
+    "reward":int credit/10,
+    "requirement":string,
+    "actual_number":现在已标注多少张了,
+    "total_reward":获取的所有的奖励数
+  }
+]
+
+```
+
+
+
+
+
 
