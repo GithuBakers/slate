@@ -57,7 +57,7 @@ true/false
 
 ```json
 {
-  "username":用户名,
+  "user_name":用户名,
   "password":密码
 }
 ```
