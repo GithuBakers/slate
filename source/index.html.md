@@ -56,19 +56,19 @@ true/false
 > Header
 
 ```json
-
-"Authorization":"Bearer "+token,
-"Roles":[role1,role2,...]
-
+{
+  "username":用户名,
+  "password":密码
+}
 ```
 
 > RETURN
 
 ```json
-{
-  "role":参见上面,
-  "token":xxxxxx
-}
+
+"Authorization":"Bearer "+token,
+"Roles":[role1,role2,...]
+
 ```
 
 ## 查看个人信息
