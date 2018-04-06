@@ -35,7 +35,7 @@ search: true
   "user_name":string,
   "role":string(worker, admin, initiator),
   "password":(加密后),
-  "avator":url,
+  "avatar":url,
   "nick_name":string
 }
 ```
@@ -51,15 +51,15 @@ true/false
 
 **HTTP REQUEST**
 
-`POST /user/tokens`
+`POST /login`
 
-> BODY
+> Header
 
 ```json
-{
-  "user_name":string,
-  "password":（加密后）
-}
+
+"Authorization":"Bearer "+token,
+"Roles":[role1,role2,...]
+
 ```
 
 > RETURN
@@ -83,7 +83,7 @@ true/false
 {
   "user_name":string,
   "role":string(worker, admin, initiator),
-  "avator":url,
+  "avatar":url,
   "nick_name":string,
   "credict":积分,
   "rank":用户的 排名？
@@ -101,7 +101,7 @@ true/false
 
 ```json
 {
-  "avator":url,
+  "avatar":url,
   "nick_name":string
 }
 
