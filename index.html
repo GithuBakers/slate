@@ -231,12 +231,6 @@
                     <a href="#21f1e88275" class="toc-h2 toc-link" data-title="">登录</a>
                   </li>
                   <li>
-                    <a href="#705c472068" class="toc-h2 toc-link" data-title="">查看个人信息</a>
-                  </li>
-                  <li>
-                    <a href="#5bd73c6465" class="toc-h2 toc-link" data-title="">修改个人信息</a>
-                  </li>
-                  <li>
                     <a href="#0ae20ac3af" class="toc-h2 toc-link" data-title="">修改密码</a>
                   </li>
               </ul>
@@ -244,6 +238,12 @@
           <li>
             <a href="#f99382e36d" class="toc-h1 toc-link" data-title="">发起者</a>
               <ul class="toc-list-h2">
+                  <li>
+                    <a href="#705c472068" class="toc-h2 toc-link" data-title="">查看个人信息</a>
+                  </li>
+                  <li>
+                    <a href="#5bd73c6465" class="toc-h2 toc-link" data-title="">修改个人信息</a>
+                  </li>
                   <li>
                     <a href="#6b717cac51" class="toc-h2 toc-link" data-title="">新建任务</a>
                   </li>
@@ -261,6 +261,12 @@
           <li>
             <a href="#37b7c70cce" class="toc-h1 toc-link" data-title="">工人</a>
               <ul class="toc-list-h2">
+                  <li>
+                    <a href="#705c472068-2" class="toc-h2 toc-link" data-title="">查看个人信息</a>
+                  </li>
+                  <li>
+                    <a href="#5bd73c6465-2" class="toc-h2 toc-link" data-title="">修改个人信息</a>
+                  </li>
                   <li>
                     <a href="#a41fe6ac23" class="toc-h2 toc-link" data-title="">获取任务列表</a>
                   </li>
@@ -333,42 +339,6 @@
 </span><span class="s2">"Authorization"</span><span class="p">:</span><span class="s2">"Bearer "</span><span class="err">+token</span><span class="p">,</span><span class="w">
 </span><span class="s2">"Roles"</span><span class="p">:[</span><span class="err">role</span><span class="mi">1</span><span class="p">,</span><span class="err">role</span><span class="mi">2</span><span class="p">,</span><span class="err">...</span><span class="p">]</span><span class="w">
 
-</span></code></pre><h2 id='705c472068'>查看个人信息</h2>
-<p><strong>HTTP REQUEST</strong></p>
-
-<p><code>GET /user/information/{user_name}</code></p>
-
-<blockquote>
-<p>RETURN</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"user_name"</span><span class="p">:</span><span class="err">string</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"role"</span><span class="p">:</span><span class="err">string(worker</span><span class="p">,</span><span class="w"> </span><span class="err">admin</span><span class="p">,</span><span class="w"> </span><span class="err">initiator)</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"avatar"</span><span class="p">:</span><span class="err">url</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"nick_name"</span><span class="p">:</span><span class="err">string</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"credict"</span><span class="p">:</span><span class="err">积分</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"rank"</span><span class="p">:</span><span class="err">用户的</span><span class="w"> </span><span class="err">排名？</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre><h2 id='5bd73c6465'>修改个人信息</h2>
-<p><strong>HTTP REQUEST</strong></p>
-
-<p><code>POST /user/information/{user_name}</code></p>
-
-<blockquote>
-<p>BODY</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"avatar"</span><span class="p">:</span><span class="err">url</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"nick_name"</span><span class="p">:</span><span class="err">string</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre>
-<blockquote>
-<p>RETURN</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="kc">true</span><span class="err">/</span><span class="kc">false</span><span class="w">
-
 </span></code></pre><h2 id='0ae20ac3af'>修改密码</h2>
 <p><strong>HTTP REQUEST</strong></p>
 
@@ -387,7 +357,42 @@
 <p>RETURN</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="kc">true</span><span class="err">/</span><span class="kc">false</span><span class="w">
-</span></code></pre><h1 id='f99382e36d'>发起者</h1><h2 id='6b717cac51'>新建任务</h2>
+</span></code></pre><h1 id='f99382e36d'>发起者</h1><h2 id='705c472068'>查看个人信息</h2>
+<p><strong>HTTP REQUEST</strong></p>
+
+<p><code>GET /initiator/information/{user_name}</code></p>
+
+<blockquote>
+<p>RETURN</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"user_name"</span><span class="p">:</span><span class="err">string</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"role"</span><span class="p">:</span><span class="err">string(worker</span><span class="p">,</span><span class="w"> </span><span class="err">admin</span><span class="p">,</span><span class="w"> </span><span class="err">initiator)</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"avatar"</span><span class="p">:</span><span class="err">url</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"nick_name"</span><span class="p">:</span><span class="err">string</span><span class="p">,</span><span class="w">
+
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h2 id='5bd73c6465'>修改个人信息</h2>
+<p><strong>HTTP REQUEST</strong></p>
+
+<p><code>POST /initiator/information/{user_name}</code></p>
+
+<blockquote>
+<p>BODY</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"avatar"</span><span class="p">:</span><span class="err">url</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"nick_name"</span><span class="p">:</span><span class="err">string</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<blockquote>
+<p>RETURN</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="kc">true</span><span class="err">/</span><span class="kc">false</span><span class="w">
+
+</span></code></pre><h2 id='6b717cac51'>新建任务</h2>
 <p><strong>HTTP REQUEST</strong></p>
 
 <p><code>POST /initiator/task/running_task</code></p>
@@ -519,7 +524,43 @@ GET /initiator/task/finished_task/{task_name}
   "result":url //数据结果的url，通常放在oss上
 }
 ``` -->
-<h1 id='37b7c70cce'>工人</h1><h2 id='a41fe6ac23'>获取任务列表</h2>
+<h1 id='37b7c70cce'>工人</h1><h2 id='705c472068-2'>查看个人信息</h2>
+<p><strong>HTTP REQUEST</strong></p>
+
+<p><code>GET /worker/information/{user_name}</code></p>
+
+<blockquote>
+<p>RETURN</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"user_name"</span><span class="p">:</span><span class="err">string</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"role"</span><span class="p">:</span><span class="err">string(worker</span><span class="p">,</span><span class="w"> </span><span class="err">admin</span><span class="p">,</span><span class="w"> </span><span class="err">initiator)</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"avatar"</span><span class="p">:</span><span class="err">url</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"nick_name"</span><span class="p">:</span><span class="err">string</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"credict"</span><span class="p">:</span><span class="err">积分</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"rank"</span><span class="p">:</span><span class="err">用户的</span><span class="w"> </span><span class="err">排名？</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h2 id='5bd73c6465-2'>修改个人信息</h2>
+<p><strong>HTTP REQUEST</strong></p>
+
+<p><code>POST /worker/information/{user_name}</code></p>
+
+<blockquote>
+<p>BODY</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"avatar"</span><span class="p">:</span><span class="err">url</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"nick_name"</span><span class="p">:</span><span class="err">string</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<blockquote>
+<p>RETURN</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="kc">true</span><span class="err">/</span><span class="kc">false</span><span class="w">
+
+</span></code></pre><h2 id='a41fe6ac23'>获取任务列表</h2>
 <p><strong>HTTP REQUEST</strong></p>
 
 <p><code>GET /worker/task_list</code></p>
