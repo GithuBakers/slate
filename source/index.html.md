@@ -71,49 +71,6 @@ true/false
 
 ```
 
-## 查看个人信息
-
-**HTTP REQUEST**
-
-`GET /user/information/{user_name}`
-
-> RETURN
-
-```json
-{
-  "user_name":string,
-  "role":string(worker, admin, initiator),
-  "avatar":url,
-  "nick_name":string,
-  "credict":积分,
-  "rank":用户的 排名？
-}
-
-```
-
-## 修改个人信息
-
-**HTTP REQUEST**
-
-`POST /user/information/{user_name}`
-
-> BODY
-
-```json
-{
-  "avatar":url,
-  "nick_name":string
-}
-
-```
-
-> RETURN
-
-```json
-true/false
-
-```
-
 ## 修改密码
 
 
@@ -137,7 +94,52 @@ true/false
 true/false
 ```
 
+
 # 发起者
+
+## 查看个人信息
+
+**HTTP REQUEST**
+
+`GET /initiator/information/{user_name}`
+
+> RETURN
+
+```json
+{
+  "user_name":string,
+  "role":string(worker, admin, initiator),
+  "avatar":url,
+  "nick_name":string,
+
+}
+
+```
+
+
+## 修改个人信息
+
+**HTTP REQUEST**
+
+`POST /initiator/information/{user_name}`
+
+> BODY
+
+```json
+{
+  "avatar":url,
+  "nick_name":string
+}
+
+```
+
+> RETURN
+
+```json
+true/false
+
+```
+
 
 ## 新建任务
 
@@ -279,6 +281,52 @@ GET /initiator/task/finished_task/{task_name}
 
 
 #  工人
+
+## 查看个人信息
+
+**HTTP REQUEST**
+
+`GET /worker/information/{user_name}`
+
+> RETURN
+
+```json
+{
+  "user_name":string,
+  "role":string(worker, admin, initiator),
+  "avatar":url,
+  "nick_name":string,
+  "credict":积分,
+  "rank":用户的 排名？
+}
+
+```
+
+
+## 修改个人信息
+
+**HTTP REQUEST**
+
+`POST /worker/information/{user_name}`
+
+> BODY
+
+```json
+{
+  "avatar":url,
+  "nick_name":string
+}
+
+```
+
+> RETURN
+
+```json
+true/false
+
+```
+
+
 
 ## 获取任务列表
 
