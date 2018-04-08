@@ -296,7 +296,7 @@ GET /initiator/task/finished_task/{task_name}
   "role":string(worker, admin, initiator),
   "avatar":url,
   "nick_name":string,
-  "credict":积分,
+  "credit":积分,
   "rank":用户的 排名？
 }
 
