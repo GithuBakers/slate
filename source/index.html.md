@@ -53,16 +53,16 @@ true/false
 
 `POST /login`
 
-> Header
+> Body
 
 ```json
 {
-  "username":用户名,
+  "user_name":用户名,
   "password":密码
 }
 ```
 
-> RETURN
+> Header
 
 ```json
 
