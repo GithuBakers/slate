@@ -151,6 +151,7 @@ true/false
 
 ```json
 {
+  "task_id":string,
   "task_name":string,
   "initiator_name":string,
   "cover":url,
