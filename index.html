@@ -450,6 +450,7 @@
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"task_id"</span><span class="p">:</span><span class="err">string</span><span class="p">,</span><span class="w">
     </span><span class="s2">"task_name"</span><span class="p">:</span><span class="err">string</span><span class="p">,</span><span class="w">
     </span><span class="s2">"cover"</span><span class="p">:</span><span class="err">url</span><span class="p">,</span><span class="w">
     </span><span class="s2">"type"</span><span class="p">:</span><span class="err">(RECT</span><span class="p">,</span><span class="err">DESC</span><span class="p">,</span><span class="err">EDGE)</span><span class="p">,</span><span class="w">
@@ -462,13 +463,14 @@
 </span></code></pre><h2 id='213c8ace90'>发起者查看自己发起的某一具体任务</h2>
 <p><strong>HTTP REQUEST</strong></p>
 
-<p><code>GET /initiator/task/{task_name}</code></p>
+<p><code>GET /initiator/task/{task_id}</code></p>
 
 <blockquote>
 <p>RETURN</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"task_id"</span><span class="p">:</span><span class="err">string</span><span class="p">,</span><span class="w">
   </span><span class="s2">"task_name"</span><span class="p">:</span><span class="err">string</span><span class="p">,</span><span class="w">
   </span><span class="s2">"initiator_name"</span><span class="p">:</span><span class="err">string</span><span class="p">,</span><span class="w">
   </span><span class="s2">"cover"</span><span class="p">:</span><span class="err">url</span><span class="p">,</span><span class="w">
@@ -494,13 +496,14 @@
 <p>BODY</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"task_name"</span><span class="p">:</span><span class="err">string</span><span class="w">
+  </span><span class="s2">"task_id"</span><span class="p">:</span><span class="err">string</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
 <p>RETURN</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"task_id"</span><span class="p">:</span><span class="err">string</span><span class="p">,</span><span class="w">
   </span><span class="s2">"task_name"</span><span class="p">:</span><span class="err">string</span><span class="p">,</span><span class="w">
   </span><span class="s2">"initiator_name"</span><span class="p">:</span><span class="err">string</span><span class="p">,</span><span class="w">
   </span><span class="s2">"cover"</span><span class="p">:</span><span class="err">url</span><span class="p">,</span><span class="w">
@@ -570,6 +573,7 @@ GET /initiator/task/finished_task/{task_name}
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"task_id"</span><span class="p">:</span><span class="err">string</span><span class="p">,</span><span class="w">
     </span><span class="s2">"cover"</span><span class="p">:</span><span class="err">任务封面</span><span class="p">,</span><span class="w">
     </span><span class="s2">"type"</span><span class="p">:</span><span class="err">任务类型</span><span class="p">,</span><span class="w">
     </span><span class="s2">"task_name"</span><span class="p">:</span><span class="err">任务名</span><span class="p">,</span><span class="w">
@@ -581,12 +585,13 @@ GET /initiator/task/finished_task/{task_name}
 </span></code></pre><h2 id='e4fe7e2171'>获取任务详情</h2>
 <p><strong>HTTP REQUEST</strong></p>
 
-<p><code>GET /worker/task/{task_name}</code></p>
+<p><code>GET /worker/task/{task_id}</code></p>
 
 <blockquote>
 <p>RETURN</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"task_id"</span><span class="p">:</span><span class="err">string</span><span class="p">,</span><span class="w">  
   </span><span class="s2">"task_name"</span><span class="p">:</span><span class="err">string</span><span class="p">,</span><span class="w">
   </span><span class="s2">"cover"</span><span class="p">:</span><span class="err">url</span><span class="p">,</span><span class="w">
   </span><span class="s2">"type"</span><span class="p">:</span><span class="err">(RECT</span><span class="p">,</span><span class="err">DESC</span><span class="p">,</span><span class="err">EDGE)</span><span class="p">,</span><span class="w">
@@ -598,7 +603,7 @@ GET /initiator/task/finished_task/{task_name}
 </span></code></pre><h2 id='d6955c9177'>接受任务</h2>
 <p><strong>HTTP REQUEST</strong></p>
 
-<p><code>POST /worker/task/received_task/{task_name}</code></p>
+<p><code>POST /worker/task/received_task/{task_id}</code></p>
 
 <blockquote>
 <p>RETURN</p>
@@ -607,7 +612,7 @@ GET /initiator/task/finished_task/{task_name}
 </span></code></pre><h2 id='017f3a230c'>获取任务图片列表</h2>
 <p><strong>HTTP REQUEST</strong></p>
 
-<p><code>GET /worker/task/received_task/img/{task_name}</code></p>
+<p><code>GET /worker/task/received_task/img/{task_id}</code></p>
 
 <blockquote>
 <p>RETURN</p>
@@ -623,7 +628,7 @@ GET /initiator/task/finished_task/{task_name}
 </span></code></pre><h2 id='21d73abb86'>提交某一张标注</h2>
 <p><strong>HTTP REQUEST</strong></p>
 
-<p><code>POST /worker/task/received_task/{task_name}/{img_id}</code></p>
+<p><code>POST /worker/task/received_task/{task_id}/{img_id}</code></p>
 
 <blockquote>
 <p>BODY</p>
@@ -658,6 +663,7 @@ GET /initiator/task/finished_task/{task_name}
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"task_id"</span><span class="p">:</span><span class="err">string</span><span class="p">,</span><span class="w">
     </span><span class="s2">"task_name"</span><span class="p">:</span><span class="err">string</span><span class="p">,</span><span class="w">
     </span><span class="s2">"cover"</span><span class="p">:</span><span class="err">url</span><span class="p">,</span><span class="w">
     </span><span class="s2">"type"</span><span class="p">:</span><span class="err">(RECT</span><span class="p">,</span><span class="err">DESC</span><span class="p">,</span><span class="err">EDGE)</span><span class="p">,</span><span class="w">
@@ -672,13 +678,14 @@ GET /initiator/task/finished_task/{task_name}
 </span></code></pre><h2 id='5cee323881'>查看某一已接受任务</h2>
 <p><strong>HTTP REQUEST</strong></p>
 
-<p><code>GET /worker/task/received_task/{task_name}</code></p>
+<p><code>GET /worker/task/received_task/{task_id}</code></p>
 
 <blockquote>
 <p>RETURN</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"task_id"</span><span class="p">:</span><span class="err">string</span><span class="p">,</span><span class="w">  
   </span><span class="s2">"task_name"</span><span class="p">:</span><span class="err">string</span><span class="p">,</span><span class="w">
   </span><span class="s2">"cover"</span><span class="p">:</span><span class="err">url</span><span class="p">,</span><span class="w">
   </span><span class="s2">"type"</span><span class="p">:</span><span class="err">(RECT</span><span class="p">,</span><span class="err">DESC</span><span class="p">,</span><span class="err">EDGE)</span><span class="p">,</span><span class="w">
