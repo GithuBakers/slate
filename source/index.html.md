@@ -117,7 +117,9 @@ true/false
 ```
 
 
+
 ## 修改个人信息
+
 
 **HTTP REQUEST**
 
@@ -166,7 +168,10 @@ true/false
   "aim":int 目标标注人数/张,
   "limit":int 单个用户最多标注的数量,
   "reward":int credit/10,
-  "requirement":string //任务要求
+  "requirement":string, //任务要求
+  "keywords":[  //标注的关键词
+    string1,string2,...
+  ]
 
 }
 
@@ -231,8 +236,10 @@ true/false
   "total_reward":发出的总的reward,
   "completeness":float,//达标比例
   "result":url,//结果所在地
-  "finished":bool//状态
-
+  "finished":bool,//状态
+  "keywords":[  //标注的关键词
+    string1,string2,...
+  ]
 }
 
 
@@ -268,8 +275,10 @@ true/false
   "requirement":string ,
   "total_reward":发出的总的reward,
   "completeness":float,
-  "result":url
-
+  "result":url,
+  "keywords":[  //标注的关键词
+    string1,string2,...
+  ]
 }
 ```
 
@@ -330,6 +339,34 @@ true/false
 
 ```
 
+## 获取推荐任务
+
+**HTTP REQUEST**
+
+`GET /worker/recommand_task`
+
+|参数名|参数含义|
+|----|-------|
+|type|任务类型(RECT,DESC,EDGE)|
+
+> RETURN
+
+```json
+{
+  "task_id":string,  
+  "task_name":string,
+  "cover":url,
+  "type":(RECT,DESC,EDGE),
+  "limit":int 单个用户最多标注的数量,
+  "reward":int credit/10,
+  "requirement":string,
+  "keywords":[  //标注的关键词
+    string1,string2,...
+  ] 
+}
+
+```
+
 
 
 ## 获取任务列表
@@ -370,7 +407,10 @@ true/false
   "type":(RECT,DESC,EDGE),
   "limit":int 单个用户最多标注的数量,
   "reward":int credit/10,
-  "requirement":string 
+  "requirement":string,
+  "keywords":[  //标注的关键词
+    string1,string2,...
+  ] 
 }
 
 ```
@@ -498,3 +538,30 @@ true/false
 
 
 
+
+
+
+
+#  管理员
+
+## 查看系统情况
+
+**HTTP REQUEST**
+
+`GET /admin/sys_info`
+
+> RETURN
+
+```json
+
+{
+  "initiator_number":int,
+  "worker_number":int,
+  "total_user_number":int,
+  "unfinished_number":int,
+  "finished_number":int,
+  "total_task_number":int
+}
+
+
+```
