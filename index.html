@@ -268,6 +268,9 @@
                     <a href="#5bd73c6465-2" class="toc-h2 toc-link" data-title="">修改个人信息</a>
                   </li>
                   <li>
+                    <a href="#b90eb221f1" class="toc-h2 toc-link" data-title="">获取推荐任务</a>
+                  </li>
+                  <li>
                     <a href="#a41fe6ac23" class="toc-h2 toc-link" data-title="">获取任务列表</a>
                   </li>
                   <li>
@@ -287,6 +290,14 @@
                   </li>
                   <li>
                     <a href="#5cee323881" class="toc-h2 toc-link" data-title="">查看某一已接受任务</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#ef84e765e0" class="toc-h1 toc-link" data-title="">管理员</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#a739dd453d" class="toc-h2 toc-link" data-title="">查看系统情况</a>
                   </li>
               </ul>
           </li>
@@ -416,7 +427,10 @@
   </span><span class="s2">"aim"</span><span class="p">:</span><span class="err">int</span><span class="w"> </span><span class="err">目标标注人数/张</span><span class="p">,</span><span class="w">
   </span><span class="s2">"limit"</span><span class="p">:</span><span class="err">int</span><span class="w"> </span><span class="err">单个用户最多标注的数量</span><span class="p">,</span><span class="w">
   </span><span class="s2">"reward"</span><span class="p">:</span><span class="err">int</span><span class="w"> </span><span class="err">credit/</span><span class="mi">10</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"requirement"</span><span class="p">:</span><span class="err">string</span><span class="w"> </span><span class="err">//任务要求</span><span class="w">
+  </span><span class="s2">"requirement"</span><span class="p">:</span><span class="err">string</span><span class="p">,</span><span class="w"> </span><span class="err">//任务要求</span><span class="w">
+  </span><span class="s2">"keywords"</span><span class="p">:[</span><span class="w">  </span><span class="err">//标注的关键词</span><span class="w">
+    </span><span class="err">string</span><span class="mi">1</span><span class="p">,</span><span class="err">string</span><span class="mi">2</span><span class="p">,</span><span class="err">...</span><span class="w">
+  </span><span class="p">]</span><span class="w">
 
 </span><span class="p">}</span><span class="w">
 
@@ -483,8 +497,10 @@
   </span><span class="s2">"total_reward"</span><span class="p">:</span><span class="err">发出的总的reward</span><span class="p">,</span><span class="w">
   </span><span class="s2">"completeness"</span><span class="p">:</span><span class="err">float</span><span class="p">,</span><span class="err">//达标比例</span><span class="w">
   </span><span class="s2">"result"</span><span class="p">:</span><span class="err">url</span><span class="p">,</span><span class="err">//结果所在地</span><span class="w">
-  </span><span class="s2">"finished"</span><span class="p">:</span><span class="err">bool//状态</span><span class="w">
-
+  </span><span class="s2">"finished"</span><span class="p">:</span><span class="err">bool</span><span class="p">,</span><span class="err">//状态</span><span class="w">
+  </span><span class="s2">"keywords"</span><span class="p">:[</span><span class="w">  </span><span class="err">//标注的关键词</span><span class="w">
+    </span><span class="err">string</span><span class="mi">1</span><span class="p">,</span><span class="err">string</span><span class="mi">2</span><span class="p">,</span><span class="err">...</span><span class="w">
+  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 
@@ -515,8 +531,10 @@
   </span><span class="s2">"requirement"</span><span class="p">:</span><span class="err">string</span><span class="w"> </span><span class="p">,</span><span class="w">
   </span><span class="s2">"total_reward"</span><span class="p">:</span><span class="err">发出的总的reward</span><span class="p">,</span><span class="w">
   </span><span class="s2">"completeness"</span><span class="p">:</span><span class="err">float</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"result"</span><span class="p">:</span><span class="err">url</span><span class="w">
-
+  </span><span class="s2">"result"</span><span class="p">:</span><span class="err">url</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"keywords"</span><span class="p">:[</span><span class="w">  </span><span class="err">//标注的关键词</span><span class="w">
+    </span><span class="err">string</span><span class="mi">1</span><span class="p">,</span><span class="err">string</span><span class="mi">2</span><span class="p">,</span><span class="err">...</span><span class="w">
+  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <!-- # 回收任务
@@ -564,6 +582,39 @@ GET /initiator/task/finished_task/{task_name}
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="kc">true</span><span class="err">/</span><span class="kc">false</span><span class="w">
 
+</span></code></pre><h2 id='b90eb221f1'>获取推荐任务</h2>
+<p><strong>HTTP REQUEST</strong></p>
+
+<p><code>GET /worker/recommand_task</code></p>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>参数含义</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>任务类型(RECT,DESC,EDGE)</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>RETURN</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"task_id"</span><span class="p">:</span><span class="err">string</span><span class="p">,</span><span class="w">  
+  </span><span class="s2">"task_name"</span><span class="p">:</span><span class="err">string</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cover"</span><span class="p">:</span><span class="err">url</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="err">(RECT</span><span class="p">,</span><span class="err">DESC</span><span class="p">,</span><span class="err">EDGE)</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"limit"</span><span class="p">:</span><span class="err">int</span><span class="w"> </span><span class="err">单个用户最多标注的数量</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"reward"</span><span class="p">:</span><span class="err">int</span><span class="w"> </span><span class="err">credit/</span><span class="mi">10</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"requirement"</span><span class="p">:</span><span class="err">string</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"keywords"</span><span class="p">:[</span><span class="w">  </span><span class="err">//标注的关键词</span><span class="w">
+    </span><span class="err">string</span><span class="mi">1</span><span class="p">,</span><span class="err">string</span><span class="mi">2</span><span class="p">,</span><span class="err">...</span><span class="w">
+  </span><span class="p">]</span><span class="w"> 
+</span><span class="p">}</span><span class="w">
+
 </span></code></pre><h2 id='a41fe6ac23'>获取任务列表</h2>
 <p><strong>HTTP REQUEST</strong></p>
 
@@ -598,7 +649,10 @@ GET /initiator/task/finished_task/{task_name}
   </span><span class="s2">"type"</span><span class="p">:</span><span class="err">(RECT</span><span class="p">,</span><span class="err">DESC</span><span class="p">,</span><span class="err">EDGE)</span><span class="p">,</span><span class="w">
   </span><span class="s2">"limit"</span><span class="p">:</span><span class="err">int</span><span class="w"> </span><span class="err">单个用户最多标注的数量</span><span class="p">,</span><span class="w">
   </span><span class="s2">"reward"</span><span class="p">:</span><span class="err">int</span><span class="w"> </span><span class="err">credit/</span><span class="mi">10</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"requirement"</span><span class="p">:</span><span class="err">string</span><span class="w"> 
+  </span><span class="s2">"requirement"</span><span class="p">:</span><span class="err">string</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"keywords"</span><span class="p">:[</span><span class="w">  </span><span class="err">//标注的关键词</span><span class="w">
+    </span><span class="err">string</span><span class="mi">1</span><span class="p">,</span><span class="err">string</span><span class="mi">2</span><span class="p">,</span><span class="err">...</span><span class="w">
+  </span><span class="p">]</span><span class="w"> 
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre><h2 id='d6955c9177'>接受任务</h2>
@@ -695,6 +749,25 @@ GET /initiator/task/finished_task/{task_name}
   </span><span class="s2">"requirement"</span><span class="p">:</span><span class="err">string</span><span class="p">,</span><span class="w">
   </span><span class="s2">"actual_number"</span><span class="p">:</span><span class="err">现在已标注多少张了</span><span class="p">,</span><span class="w">
   </span><span class="s2">"total_reward"</span><span class="p">:</span><span class="err">获取的所有的奖励数</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+
+</span></code></pre><h1 id='ef84e765e0'>管理员</h1><h2 id='a739dd453d'>查看系统情况</h2>
+<p><strong>HTTP REQUEST</strong></p>
+
+<p><code>GET /admin/sys_info</code></p>
+
+<blockquote>
+<p>RETURN</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"initiator_number"</span><span class="p">:</span><span class="err">int</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"worker_number"</span><span class="p">:</span><span class="err">int</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"total_user_number"</span><span class="p">:</span><span class="err">int</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"unfinished_number"</span><span class="p">:</span><span class="err">int</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"finished_number"</span><span class="p">:</span><span class="err">int</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"total_task_number"</span><span class="p">:</span><span class="err">int</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 
