@@ -194,6 +194,7 @@ true/false
 ```json
 [
   {
+    "task_id":string,
     "task_name":string,
     "cover":url,
     "type":(RECT,DESC,EDGE),
@@ -210,13 +211,14 @@ true/false
 
 **HTTP REQUEST**
 
-`GET /initiator/task/{task_name}`
+`GET /initiator/task/{task_id}`
 
 > RETURN
 
 ```json
 
 {
+  "task_id":string,
   "task_name":string,
   "initiator_name":string,
   "cover":url,
@@ -246,7 +248,7 @@ true/false
 
 ```json
 {
-  "task_name":string
+  "task_id":string
 }
 ```
 
@@ -254,6 +256,7 @@ true/false
 
 ```json
 {
+  "task_id":string,
   "task_name":string,
   "initiator_name":string,
   "cover":url,
@@ -339,6 +342,7 @@ true/false
 ```json
 [
   {
+    "task_id":string,
     "cover":任务封面,
     "type":任务类型,
     "task_name":任务名,
@@ -353,12 +357,13 @@ true/false
 
 **HTTP REQUEST**
 
-`GET /worker/task/{task_name}`
+`GET /worker/task/{task_id}`
 
 > RETURN
 
 ```json
 {
+  "task_id":string,  
   "task_name":string,
   "cover":url,
   "type":(RECT,DESC,EDGE),
@@ -373,7 +378,7 @@ true/false
 
 **HTTP REQUEST**
 
-`POST /worker/task/received_task/{task_name}`
+`POST /worker/task/received_task/{task_id}`
 
 > RETURN
 
@@ -388,7 +393,7 @@ true/false
 
 **HTTP REQUEST**
 
-`GET /worker/task/received_task/img/{task_name}`
+`GET /worker/task/received_task/img/{task_id}`
 
 > RETURN
 
@@ -408,7 +413,7 @@ true/false
 
 **HTTP REQUEST**
 
-`POST /worker/task/received_task/{task_name}/{img_id}`
+`POST /worker/task/received_task/{task_id}/{img_id}`
 
 > BODY
 
@@ -447,6 +452,7 @@ true/false
 ```json
 [
   {
+    "task_id":string,
     "task_name":string,
     "cover":url,
     "type":(RECT,DESC,EDGE),
@@ -465,13 +471,14 @@ true/false
 
 **HTTP REQUEST**
 
-`GET /worker/task/received_task/{task_name}`
+`GET /worker/task/received_task/{task_id}`
 
 > RETURN
 
 ```json
 
 {
+  "task_id":string,  
   "task_name":string,
   "cover":url,
   "type":(RECT,DESC,EDGE),
