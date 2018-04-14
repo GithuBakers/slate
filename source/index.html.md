@@ -343,7 +343,7 @@ true/false
 
 **HTTP REQUEST**
 
-`GET /worker/recommand_task`
+`GET /worker/recommend_task`
 
 |参数名|参数含义|
 |----|-------|
@@ -527,6 +527,9 @@ true/false
   "reward":int credit/10,
   "requirement":string,
   "actual_number":现在已标注多少张了,
+  "keywords":[
+    string1,string2,...
+  ]
   "total_reward":获取的所有的奖励数
 }
 
