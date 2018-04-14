@@ -585,7 +585,7 @@ GET /initiator/task/finished_task/{task_name}
 </span></code></pre><h2 id='b90eb221f1'>获取推荐任务</h2>
 <p><strong>HTTP REQUEST</strong></p>
 
-<p><code>GET /worker/recommand_task</code></p>
+<p><code>GET /worker/recommend_task</code></p>
 
 <table><thead>
 <tr>
@@ -748,6 +748,9 @@ GET /initiator/task/finished_task/{task_name}
   </span><span class="s2">"reward"</span><span class="p">:</span><span class="err">int</span><span class="w"> </span><span class="err">credit/</span><span class="mi">10</span><span class="p">,</span><span class="w">
   </span><span class="s2">"requirement"</span><span class="p">:</span><span class="err">string</span><span class="p">,</span><span class="w">
   </span><span class="s2">"actual_number"</span><span class="p">:</span><span class="err">现在已标注多少张了</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"keywords"</span><span class="p">:[</span><span class="w">
+    </span><span class="err">string</span><span class="mi">1</span><span class="p">,</span><span class="err">string</span><span class="mi">2</span><span class="p">,</span><span class="err">...</span><span class="w">
+  </span><span class="p">]</span><span class="w">
   </span><span class="s2">"total_reward"</span><span class="p">:</span><span class="err">获取的所有的奖励数</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
