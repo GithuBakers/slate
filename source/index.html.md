@@ -155,7 +155,7 @@ true/false
 {
   "task_id":string,
   "task_name":string,
-  "initiator_name":string,
+  "initiator_name":string,  //有可能在未来版本消失
   "cover":url,
   "type":(RECT,DESC,EDGE),
   "data_set":[
@@ -171,6 +171,9 @@ true/false
   "requirement":string, //任务要求
   "keywords":[  //标注的关键词
     string1,string2,...
+  ],
+  "dependencies":[  //任务依赖的标准集（标准集id）
+    string1,string2,.....
   ]
 
 }
@@ -239,6 +242,9 @@ true/false
   "finished":bool,//状态
   "keywords":[  //标注的关键词
     string1,string2,...
+  ],
+  "dependencies":[  //任务依赖的标准集对象们
+    {},{},...
   ]
 }
 
@@ -278,6 +284,132 @@ true/false
   "result":url,
   "keywords":[  //标注的关键词
     string1,string2,...
+  ],
+  "dependencies":[  //任务依赖的标准集对象们
+    {},{},...
+  ]
+}
+```
+
+
+
+## 发起者创建标准
+
+**新增功能**
+
+`POST initiator/criterion/new_criterion`
+
+```json
+{
+  "criterion_id":string,
+  "criterion_name":string,
+  "cover":url,
+  "type":(RECT,DESC,EDGE),
+  "data_set":[
+    {
+      "id":图片id,
+      "url":url
+    },
+    ...
+  ],
+  "aim":int 用户通过的标准（至少完成多少张）,//张数必须小于等于上传图片总张数
+  "requirement":string, //任务要求（用户该做什么）
+  "keywords":[  //标注的关键词
+    string1,string2,...
+  ]
+
+}
+
+```
+
+> RETURN
+
+```json
+true/false
+```
+
+## 发起者查看自己发起的所有标准
+
+
+`GET /initiator/criterion/myself`
+
+
+**参数说明**
+
+|参数名|参数意义|参数类型|
+|-----|---|----|
+|initiator|发起者ID|string|
+
+>RETURN
+
+```json
+[
+  {
+    //参见criterion
+  }
+]
+```
+
+
+## 发起者查看所有标准
+
+`GET /initiator/criterion`
+
+>RETURN
+
+```json
+[
+  {
+    //参见criterion
+  }
+]
+```
+
+## 发起者做自己的标准（获取图片列表）
+
+`GET /initiator/criterion/img`
+
+|参数名|参数意义|参数类型|
+|-----|---|----|
+|criterion_id|标准ID|string|
+
+>RETURN
+
+```json
+[ 
+  { 
+  "id":图片ID,
+  "name":(String)图片名,
+  "raw":(String)原图的URL 
+  }, 
+  ...(若干个)
+]
+```
+
+## 发起者做自己的标准
+
+`POST /initiator/criterion/img`
+|参数名|参数意义|参数类型|
+|-----|---|----|
+|criterion_id|标准ID|string|
+
+
+>REQUEST
+
+```json
+{
+
+  "id":图片id,
+  "tags":
+  [
+    {
+      "id":(String)标注的ID,
+      "mark":{
+        "type":（EDGE, DESC, RECT)
+      },//某种类型的标记，**必须包含**类型字段
+      "comment":备注
+    },
+    ...
   ]
 }
 ```
@@ -295,6 +427,97 @@ GET /initiator/task/finished_task/{task_name}
 
 #  工人
 
+
+## 工人查看所有标准
+
+`GET /worker/criterion`
+
+>RETURN
+
+```json
+[
+  {
+    //参见criterion
+  },...
+]
+```
+
+
+## 工人做某一标准（获取图片列表）
+
+`GET /worker/criterion/img`
+
+|参数名|参数意义|参数类型|
+|-----|---|----|
+|criterion_id|标准ID|string|
+
+>RETURN
+
+```json
+[ 
+  { 
+  "id":图片ID,
+  "name":(String)图片名,
+  "raw":(String)原图的URL 
+  }, 
+  ...(若干个)
+]
+```
+
+
+## 工人做某一标准
+
+
+`POST /worker/criterion/img`
+|参数名|参数意义|参数类型|
+|-----|---|----|
+|criterion_id|标准ID|string|
+
+
+>REQUEST
+
+```json
+{
+
+  "id":图片id,
+  "tags":
+  [
+    {
+      "id":(String)标注的ID,
+      "mark":{
+        "type":（EDGE, DESC, RECT)
+      },//某种类型的标记，**必须包含**类型字段
+      "comment":备注
+    },
+    ...
+  ]
+}
+```
+
+>RETURN 
+
+>返回的是正确答案
+
+```json
+{
+  "correct":boolean,//是否正确
+  "id":图片id,
+  "tags":
+  [
+    {
+      "id":(String)标注的ID,
+      "mark":{
+        "type":（EDGE, DESC, RECT)
+      },//某种类型的标记，**必须包含**类型字段
+      "comment":备注
+    },
+    ...
+  ]
+}
+```
+
+
+
 ## 查看个人信息
 
 **HTTP REQUEST**
@@ -310,7 +533,10 @@ GET /initiator/task/finished_task/{task_name}
   "avatar":url,
   "nick_name":string,
   "credit":积分,
-  "rank":用户的 排名？
+  "rank":用户的 排名？,
+  "dependencies":[ 
+    {},...//标准对象的列表
+  ]
 }
 
 ```
@@ -410,6 +636,12 @@ true/false
   "requirement":string,
   "keywords":[  //标注的关键词
     string1,string2,...
+  ],
+  "dependencies":[  
+    {
+      "qualified":boolean,//用户是否完成了这一项
+      //其余部分字段和criterion
+    }
   ] 
 }
 
