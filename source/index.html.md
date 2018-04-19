@@ -161,7 +161,7 @@ true/false
   "data_set":[
     {
       "id":图片id,
-      "url":url
+      "raw":url
     },
     ...
   ],
