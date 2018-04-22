@@ -706,7 +706,8 @@ GET /initiator/task/finished_task/{task_name}
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="err">//参见criterion</span><span class="w">
+    </span><span class="s2">"is_qualified"</span><span class="p">:</span><span class="err">boolean</span><span class="p">,</span><span class="err">//是否已通过这个标准集</span><span class="w">
+    </span><span class="err">//其它部分参见criterion</span><span class="w">
   </span><span class="p">},</span><span class="err">...</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre><h2 id='2c22fcb709'>工人做某一标准（获取图片列表）</h2>
@@ -1032,6 +1033,15 @@ GET /initiator/task/finished_task/{task_name}
 <p>//错误学习（用户正确率变化率）</p>
 
 <p>//矩形聚类</p>
+
+<blockquote>
+<p>前端bug
+- 没传头像没有默认URL，并且没有提醒
+&lt;!-- - 前端登录圈圈一直在转 --&gt;
+- 新建任务，奖励 提示语
+- 重复注册 400
+- Tag生成ID</p>
+</blockquote>
 
       </div>
       <div class="dark-box">
