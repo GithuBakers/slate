@@ -437,7 +437,8 @@ GET /initiator/task/finished_task/{task_name}
 ```json
 [
   {
-    //参见criterion
+    "is_qualified":boolean,//是否已通过这个标准集
+    //其它部分参见criterion
   },...
 ]
 ```
@@ -814,6 +815,11 @@ true/false
 
 //矩形聚类
 
-
+>前端bug
+- 没传头像没有默认URL，并且没有提醒
+<!-- - 前端登录圈圈一直在转 -->
+- 新建任务，奖励 提示语
+- 重复注册 400
+- Tag生成ID
 
 
