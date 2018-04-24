@@ -36,7 +36,9 @@ search: true
   "role":string(worker, admin, initiator),
   "password":(加密后),
   "avatar":url,
-  "nick_name":string
+  "nick_name":string,
+  "sex":(MALE,FEMALE,NA),
+  "birthday":YYYY-MM-DD
 }
 ```
 
@@ -111,7 +113,23 @@ true/false
   "role":string(worker, admin, initiator),
   "avatar":url,
   "nick_name":string,
-
+  "sex":(MALE,FEMALE,NA),
+  "birthday":YYYY-MM-DD,
+  //未完成任务的近期标注增加情况 & 完成情况
+  "tasks":[
+    {
+      "task_name":string,//任务名
+      "task_id":string,//任务ID
+      "completeness":int,//0-100，完成情况
+      "recent":[
+        {
+        "x":long(毫秒数),
+        "y1":int//这段时间的完成量（默认为1天）
+        },...
+      ]
+    },
+    ...
+  ]
 }
 
 ```
@@ -130,7 +148,9 @@ true/false
 ```json
 {
   "avatar":url,
-  "nick_name":string
+  "nick_name":string,
+  "sex":(MALE,FEMALE,NA),
+  "birthday":YYYY-MM-DD
 }
 
 ```
@@ -240,6 +260,7 @@ true/false
   "completeness":float,//达标比例
   "result":url,//结果所在地
   "finished":bool,//状态
+  "has_result":bool,//结果是否计算完成
   "keywords":[  //标注的关键词
     string1,string2,...
   ],
@@ -290,6 +311,75 @@ true/false
   ]
 }
 ```
+
+
+## 发起者查看某一已结束任务（这个时候结果必须已经计算完成）
+
+<aside class="notice">
+这一步是从“用户查看已结束任务”调用来的，
+这个页面主要展示 某一已计算出结果的 任务的各项统计数据。
+这些数据通常描述了数据被标注的程度，和标注的可靠程度（仅供参考）。
+</aside>
+
+`GET /initiator/task/task_result`
+
+|参数名|参数意义|参数类型|
+|-----|---|----|
+|taskID|是否已结束|string|
+
+
+> RETURN
+
+```json
+{
+  "task_id":string,
+  "task_name":string,
+  "cover":url,
+  "type":(RECT,DESC,EDGE),
+  "aim":int 目标标注人数,
+  "limit":int 单个用户最多标注的数量,
+  "keywords":[  //标注的关键词
+    string1,string2,...
+  ],
+  //单张图片标注用户数-标注聚集程度（x-y)(例如，一张图片被9000个用户标记了，峰度)
+  "hive":[
+    {
+      "x":double,//单张图片用户标注数目
+      "y":double//标注聚集程度
+    }
+  ],
+  //性别、年龄的分布（比如 20岁以下男生有200人）
+  "sex_age":[
+      { 
+        "name":'Male', 
+        "under20": 18.9, 
+        "under30": 28.8, 
+        "under40":39.3, 
+        "above": 81.4
+        },
+      { 
+        "name":'Female', 
+        "under20": 18.9, 
+        "under30": 28.8, 
+        "under40":39.3, 
+        "above": 81.4
+        },
+      { 
+        "name":'Others', 
+        "under20": 18.9, 
+        "under30": 28.8, 
+        "under40":39.3, 
+        "above": 81.4
+        }       
+  ]
+
+
+
+
+}
+```
+
+
 
 
 
@@ -535,8 +625,34 @@ GET /initiator/task/finished_task/{task_name}
   "nick_name":string,
   "credit":积分,
   "rank":用户的 排名？,
+  "sex":(MALE,FEMALE,NA),
+  "birthday":YYYY-MM-DD,
   "dependencies":[ 
     {},...//标准对象的列表
+  ],
+  //雷达图，用于展示用户的可信程度的几个维度（暂时不对可信程度综合量化）,0-100
+  "capability":[
+    {"item":"完成标准集", "a":90},
+    {"item":"错误学习能力", "a":80},
+    {"item":"完成任务量", "a":60},
+    {"item":"标注准确度", "a":70},//任务
+    {"item":"近期情况", "a":60}    
+  ],
+  //折线图，用户近期完成的任务量与获取的积分量的折线图
+  "recent":[
+    {"x":long(毫秒数),
+    "y1":int,//这段时间完成的任务量（默认为1天）
+    "y2":积分量//这段时间获取的积分量（默认为1天）
+    },...
+  ],
+  //饼图，用户近期各种标注的占比
+  "tags":[
+    {"item":"标准描述","number":20},
+    {"item":"标准矩形","number":30},
+    {"item":"标准边界","number":40},
+    {"item":"任务描述","number":50},
+    {"item":"任务矩形","number":90},
+    {"item":"任务边界","number":70}
   ]
 }
 
@@ -554,7 +670,9 @@ GET /initiator/task/finished_task/{task_name}
 ```json
 {
   "avatar":url,
-  "nick_name":string
+  "nick_name":string,
+  "sex":(MALE,FEMALE,NA),
+  "birthday":YYYY-MM-DD
 }
 
 ```
