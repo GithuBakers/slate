@@ -901,11 +901,11 @@ GET /initiator/task/finished_task/{task_name}
   </span><span class="p">],</span><span class="w">
   </span><span class="err">//雷达图，用于展示用户的可信程度的几个维度（暂时不对可信程度综合量化）</span><span class="p">,</span><span class="mi">0-100</span><span class="w">
   </span><span class="s2">"capability"</span><span class="p">:[</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"item"</span><span class="p">:</span><span class="s2">"完成标准集"</span><span class="p">,</span><span class="w"> </span><span class="s2">"a"</span><span class="p">:</span><span class="mi">90</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"item"</span><span class="p">:</span><span class="s2">"错误学习能力"</span><span class="p">,</span><span class="w"> </span><span class="s2">"a"</span><span class="p">:</span><span class="mi">80</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"item"</span><span class="p">:</span><span class="s2">"完成任务量"</span><span class="p">,</span><span class="w"> </span><span class="s2">"a"</span><span class="p">:</span><span class="mi">60</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"item"</span><span class="p">:</span><span class="s2">"标注准确度"</span><span class="p">,</span><span class="w"> </span><span class="s2">"a"</span><span class="p">:</span><span class="mi">70</span><span class="p">},</span><span class="err">//任务</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"item"</span><span class="p">:</span><span class="s2">"近期情况"</span><span class="p">,</span><span class="w"> </span><span class="s2">"a"</span><span class="p">:</span><span class="mi">60</span><span class="p">}</span><span class="w">    
+    </span><span class="p">{</span><span class="s2">"item"</span><span class="p">:</span><span class="s2">"完成标准集"</span><span class="p">,</span><span class="w"> </span><span class="s2">"number"</span><span class="p">:</span><span class="mi">90</span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="s2">"item"</span><span class="p">:</span><span class="s2">"错误学习能力"</span><span class="p">,</span><span class="w"> </span><span class="s2">"number"</span><span class="p">:</span><span class="mi">80</span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="s2">"item"</span><span class="p">:</span><span class="s2">"完成任务量"</span><span class="p">,</span><span class="w"> </span><span class="s2">"number"</span><span class="p">:</span><span class="mi">60</span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="s2">"item"</span><span class="p">:</span><span class="s2">"标注准确度"</span><span class="p">,</span><span class="w"> </span><span class="s2">"number"</span><span class="p">:</span><span class="mi">70</span><span class="p">},</span><span class="err">//任务</span><span class="w">
+    </span><span class="p">{</span><span class="s2">"item"</span><span class="p">:</span><span class="s2">"近期情况"</span><span class="p">,</span><span class="w"> </span><span class="s2">"number"</span><span class="p">:</span><span class="mi">60</span><span class="p">}</span><span class="w">    
   </span><span class="p">],</span><span class="w">
   </span><span class="err">//折线图，用户近期完成的任务量与获取的积分量的折线图</span><span class="w">
   </span><span class="s2">"recent"</span><span class="p">:[</span><span class="w">
@@ -1160,12 +1160,22 @@ GET /initiator/task/finished_task/{task_name}
 
 <blockquote>
 <p>前端bug
-- 没传头像没有默认URL，并且没有提醒
-&lt;!-- - 前端登录圈圈一直在转 --&gt;
-- 新建任务，奖励 提示语
-- 重复注册 400
-- Tag生成ID</p>
+&lt;!-- - 没传头像没有默认URL，并且没有提醒 ✅ --&gt;
+&lt;!-- - 前端登录圈圈一直在转 ✅--&gt;
+&lt;!-- - 新建任务，奖励 提示语 --&gt;
+&lt;!-- - 重复注册 400 --&gt;
+&lt;!-- - Tag生成ID --&gt;</p>
 </blockquote>
+
+<p>4.25 
+结束任务之后403，并且任务并没有结束 ✅
+点击下载没有反应 ✅
+RECT任务进去竟然是！描述 ✅
+描述任务发回来没有JSON ✅</p>
+
+<p>智能推荐的任务没有接受
+智能推荐的任务只能做一张
+创建任务没做输入检查（各种数据类型）  </p>
 
       </div>
       <div class="dark-box">
