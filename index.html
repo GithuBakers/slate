@@ -328,6 +328,14 @@
                   </li>
               </ul>
           </li>
+          <li>
+            <a href="#b61cabc939" class="toc-h1 toc-link" data-title="">任何人</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#484a03ac6d" class="toc-h2 toc-link" data-title="">上传文件</a>
+                  </li>
+              </ul>
+          </li>
       </div>
         <ul class="toc-footer">
             <li><a href='#'>Sign Up for a Developer Key</a></li>
@@ -907,6 +915,10 @@ GET /initiator/task/finished_task/{task_name}
     </span><span class="p">{</span><span class="s2">"item"</span><span class="p">:</span><span class="s2">"任务矩形"</span><span class="p">,</span><span class="s2">"number"</span><span class="p">:</span><span class="mi">90</span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="s2">"item"</span><span class="p">:</span><span class="s2">"任务边界"</span><span class="p">,</span><span class="s2">"number"</span><span class="p">:</span><span class="mi">70</span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
+  </span><span class="err">//用户等级</span><span class="w">
+  </span><span class="err">//</span><span class="w"> </span><span class="s2">"user_level"</span><span class="p">:</span><span class="err">int(等级)</span><span class="p">,</span><span class="w">
+  </span><span class="err">//</span><span class="w"> </span><span class="s2">"exp_to_up"</span><span class="p">:</span><span class="err">int(下一级级所需等级)</span><span class="p">,</span><span class="w">
+  </span><span class="err">//</span><span class="w"> </span><span class="s2">"exp"</span><span class="p">:</span><span class="err">int(现有经验值)</span><span class="p">,</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre><h2 id='5bd73c6465-2'>修改个人信息</h2>
@@ -1128,39 +1140,23 @@ GET /initiator/task/finished_task/{task_name}
 </span><span class="p">}</span><span class="w">
 
 
-</span></code></pre>
-<blockquote>
-<p>可能增加的用户的统计信息
-各类任务对积分的占比
-已标注图片数的组成（比如 各类标注和所做的标准
-用户每日工作量（柱状图，30天
-用户近30次任务的（评估）正确率
-用户等级</p>
-</blockquote>
+</span></code></pre><h1 id='b61cabc939'>任何人</h1><h2 id='484a03ac6d'>上传文件</h2>
+<p>上传的文件会被自动上传到OSS上，返回的是URL</p>
 
-<p>//错误学习（用户正确率变化率）</p>
+<p>目前允许的压缩格式仅有zip, zip会被自动解压，得到的返回值是里面每个文件的URL</p>
 
-<p>//矩形聚类</p>
+<p><strong>HTTP REQUEST</strong></p>
+
+<p><code>POST /file/upload</code></p>
 
 <blockquote>
-<p>前端bug
-&lt;!-- - 没传头像没有默认URL，并且没有提醒 ✅ --&gt;
-&lt;!-- - 前端登录圈圈一直在转 ✅--&gt;
-&lt;!-- - 新建任务，奖励 提示语 --&gt;
-&lt;!-- - 重复注册 400 --&gt;
-&lt;!-- - Tag生成ID --&gt;</p>
+<p>RETURN</p>
 </blockquote>
-
-<p>4.25 
-结束任务之后403，并且任务并没有结束 ✅
-点击下载没有反应 ✅
-RECT任务进去竟然是！描述 ✅
-描述任务发回来没有JSON ✅</p>
-
-<p>智能推荐的任务没有接受
-智能推荐的任务只能做一张
-创建任务没做输入检查（各种数据类型）  </p>
-
+<pre class="highlight plaintext"><code>
+[
+  url1,url2,....
+]
+</code></pre>
       </div>
       <div class="dark-box">
           <div class="lang-selector">
