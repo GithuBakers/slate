@@ -248,6 +248,9 @@
                     <a href="#6b717cac51" class="toc-h2 toc-link" data-title="">新建任务</a>
                   </li>
                   <li>
+                    <a href="#79b160843f" class="toc-h2 toc-link" data-title="">发起者核算某一任务的预算</a>
+                  </li>
+                  <li>
                     <a href="#d6314185d8" class="toc-h2 toc-link" data-title="">发起者查看自己的已发起任务列表</a>
                   </li>
                   <li>
@@ -318,6 +321,12 @@
                   <li>
                     <a href="#5cee323881" class="toc-h2 toc-link" data-title="">查看某一已接受任务</a>
                   </li>
+                  <li>
+                    <a href="#944b458e95" class="toc-h2 toc-link" data-title="">提起一个【专业认证申请】</a>
+                  </li>
+                  <li>
+                    <a href="#amp" class="toc-h2 toc-link" data-title="amp">查看通知（包括申请&amp;申诉的处理结果）</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -333,6 +342,17 @@
               <ul class="toc-list-h2">
                   <li>
                     <a href="#484a03ac6d" class="toc-h2 toc-link" data-title="">上传文件</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#agent" class="toc-h1 toc-link" data-title="agent">增加身份：客服(Agent)</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#7427e38f34" class="toc-h2 toc-link" data-title="">获取待处理的【工人专业认证申请】列表</a>
+                  </li>
+                  <li>
+                    <a href="#cac5be2fb6" class="toc-h2 toc-link" data-title="">提交对某一【工人专业认证申请】的处理结果</a>
                   </li>
               </ul>
           </li>
@@ -469,7 +489,6 @@
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"task_id"</span><span class="p">:</span><span class="err">string</span><span class="p">,</span><span class="w">
   </span><span class="s2">"task_name"</span><span class="p">:</span><span class="err">string</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"initiator_name"</span><span class="p">:</span><span class="err">string</span><span class="p">,</span><span class="w">  </span><span class="err">//有可能在未来版本消失</span><span class="w">
   </span><span class="s2">"cover"</span><span class="p">:</span><span class="err">url</span><span class="p">,</span><span class="w">
   </span><span class="s2">"type"</span><span class="p">:</span><span class="err">(RECT</span><span class="p">,</span><span class="err">DESC</span><span class="p">,</span><span class="err">EDGE)</span><span class="p">,</span><span class="w">
   </span><span class="s2">"data_set"</span><span class="p">:[</span><span class="w">
@@ -479,16 +498,19 @@
     </span><span class="p">},</span><span class="w">
     </span><span class="err">...</span><span class="w">
   </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"aim"</span><span class="p">:</span><span class="err">int</span><span class="w"> </span><span class="err">目标标注人数/张</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"limit"</span><span class="p">:</span><span class="err">int</span><span class="w"> </span><span class="err">单个用户最多标注的数量</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"reward"</span><span class="p">:</span><span class="err">int</span><span class="w"> </span><span class="err">credit/</span><span class="mi">10</span><span class="p">,</span><span class="w">
+  </span><span class="err">//</span><span class="w"> </span><span class="s2">"aim"</span><span class="p">:</span><span class="err">int</span><span class="w"> </span><span class="err">目标标注人数/张</span><span class="p">,</span><span class="w">
+  </span><span class="err">//</span><span class="w"> </span><span class="s2">"limit"</span><span class="p">:</span><span class="err">int</span><span class="w"> </span><span class="err">单个用户最多标注的数量</span><span class="p">,</span><span class="w">
+  </span><span class="err">//</span><span class="w"> </span><span class="s2">"reward"</span><span class="p">:</span><span class="err">int</span><span class="w"> </span><span class="err">credit/</span><span class="mi">10</span><span class="p">,</span><span class="w">
   </span><span class="s2">"requirement"</span><span class="p">:</span><span class="err">string</span><span class="p">,</span><span class="w"> </span><span class="err">//任务要求</span><span class="w">
   </span><span class="s2">"keywords"</span><span class="p">:[</span><span class="w">  </span><span class="err">//标注的关键词</span><span class="w">
     </span><span class="err">string</span><span class="mi">1</span><span class="p">,</span><span class="err">string</span><span class="mi">2</span><span class="p">,</span><span class="err">...</span><span class="w">
   </span><span class="p">],</span><span class="w">
   </span><span class="s2">"dependencies"</span><span class="p">:[</span><span class="w">  </span><span class="err">//任务依赖的标准集（标准集id）</span><span class="w">
     </span><span class="err">string</span><span class="mi">1</span><span class="p">,</span><span class="err">string</span><span class="mi">2</span><span class="p">,</span><span class="err">.....</span><span class="w">
-  </span><span class="p">]</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"reward_way"</span><span class="p">:{</span><span class="w">
+    </span><span class="err">//参见</span><span class="p">[</span><span class="err">linker</span><span class="p">]</span><span class="err">reward</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 
 </span><span class="p">}</span><span class="w">
 
@@ -497,6 +519,36 @@
 <p>RETURN</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="kc">true</span><span class="err">/</span><span class="kc">false</span><span class="w">
+</span></code></pre><h2 id='79b160843f'>发起者核算某一任务的预算</h2>
+<p><code>POST /initiator/budget</code></p>
+
+<p><strong>HTTP REQUEST</strong></p>
+
+<blockquote>
+<p>[linker]reward
+<code>json
+{
+    &quot;type&quot;:(CLASSIC,BUDGET,DYNAMIC)
+    &quot;url_number&quot;:任务url的数量,
+    &quot;aim&quot;:int ,//目标标注人数/张
+    //以下内容三选一：
+    //(CLASSIC)，经典模式
+    &quot;limit&quot;:int, //单个用户最多标注的数量,
+    &quot;reward&quot;:int,//credit
+    //（BUDGET），预算有限
+    &quot;budget&quot;:int,//预算
+    //(DYNAMIC),动态计算预算
+    &quot;sample_budget&quot;:int,//取样阶段的预算
+    &quot;sample_price&quot;:int//取样阶段的价格
+}
+</code></p>
+
+<p>RETURN</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"sufficient"</span><span class="p">:</span><span class="err">boolean</span><span class="p">,</span><span class="err">//预算是否充足</span><span class="w">
+  </span><span class="s2">"budget"</span><span class="p">:</span><span class="err">int</span><span class="p">,</span><span class="err">//需要的预算结果</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre><h2 id='d6314185d8'>发起者查看自己的已发起任务列表</h2>
 <p><strong>HTTP REQUEST</strong></p>
 
@@ -528,7 +580,12 @@
     </span><span class="s2">"cover"</span><span class="p">:</span><span class="err">url</span><span class="p">,</span><span class="w">
     </span><span class="s2">"type"</span><span class="p">:</span><span class="err">(RECT</span><span class="p">,</span><span class="err">DESC</span><span class="p">,</span><span class="err">EDGE)</span><span class="p">,</span><span class="w">
     </span><span class="s2">"completeness"</span><span class="p">:</span><span class="err">float</span><span class="p">,</span><span class="err">//达标比例</span><span class="w">
-    </span><span class="s2">"finished"</span><span class="p">:</span><span class="err">bool//状态</span><span class="w">
+    </span><span class="s2">"finished"</span><span class="p">:</span><span class="err">bool</span><span class="p">,</span><span class="err">//状态</span><span class="w">
+    </span><span class="s2">"remained_budget"</span><span class="p">:</span><span class="err">int</span><span class="p">,</span><span class="err">//剩余的预算</span><span class="w">
+    </span><span class="s2">"reward_way"</span><span class="p">:{</span><span class="w">
+      </span><span class="err">//参见</span><span class="p">[</span><span class="err">linker</span><span class="p">]</span><span class="err">reward</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="err">(optional)</span><span class="s2">"remain_time"</span><span class="p">:</span><span class="err">int//距离取样结束剩余的时间</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="err">...</span><span class="w">
 </span><span class="p">]</span><span class="w">
@@ -1121,6 +1178,27 @@ GET /initiator/task/finished_task/{task_name}
 </span><span class="p">}</span><span class="w">
 
 
+</span></code></pre><h2 id='944b458e95'>提起一个【专业认证申请】</h2>
+<p><code>POST worker/profession</code></p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:,</span><span class="err">//专业认证申请id</span><span class="w">
+  </span><span class="s2">"images"</span><span class="p">:[</span><span class="w">
+    </span><span class="err">url</span><span class="mi">1</span><span class="p">,</span><span class="err">...</span><span class="w">
+  </span><span class="p">]</span><span class="err">//专业认证需要用的图片</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h2 id='amp'>查看通知（包括申请&amp;申诉的处理结果）</h2>
+<p><code>GET worker/notification</code></p>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:,</span><span class="err">//通知id</span><span class="w">
+    </span><span class="s2">"content"</span><span class="p">:,</span><span class="err">//string</span><span class="w"> </span><span class="err">通知内容</span><span class="w">
+    </span><span class="s2">"images"</span><span class="p">:[</span><span class="err">//通知的图片（如果有）</span><span class="w">
+      </span><span class="err">url</span><span class="mi">1</span><span class="p">,</span><span class="err">...</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="err">...</span><span class="w">
+</span><span class="p">]</span><span class="w">
+
 </span></code></pre><h1 id='ef84e765e0'>管理员</h1><h2 id='a739dd453d'>查看系统情况</h2>
 <p><strong>HTTP REQUEST</strong></p>
 
@@ -1156,7 +1234,28 @@ GET /initiator/task/finished_task/{task_name}
 [
   url1,url2,....
 ]
-</code></pre>
+</code></pre><h1 id='agent'>增加身份：客服(Agent)</h1><h2 id='7427e38f34'>获取待处理的【工人专业认证申请】列表</h2>
+<p><code>GET agent/profession</code></p>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="p">,</span><span class="err">//某一认证的ID</span><span class="w">
+    </span><span class="s2">"profession"</span><span class="p">:,</span><span class="err">//需要认证的专业名</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="s2">"criterion"</span><span class="p">:</span><span class="err">int</span><span class="p">,</span><span class="err">//【专业标准集】的通过百分比</span><span class="w">
+    </span><span class="s2">"images"</span><span class="p">:[</span><span class="w"> </span><span class="err">//工人提供的认证资料</span><span class="w">
+      </span><span class="err">url</span><span class="mi">1</span><span class="p">,</span><span class="err">url</span><span class="mi">2</span><span class="p">,</span><span class="err">...</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+
+  </span><span class="p">},</span><span class="err">...</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre><h2 id='cac5be2fb6'>提交对某一【工人专业认证申请】的处理结果</h2>
+<p><code>POST agent/profession</code></p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:,</span><span class="err">//此认证的ID</span><span class="w">
+  </span><span class="s2">"result"</span><span class="p">:</span><span class="err">(AC</span><span class="p">,</span><span class="err">WA</span><span class="p">,</span><span class="err">PANDING)</span><span class="p">,</span><span class="err">//认证结果</span><span class="w">
+  </span><span class="s2">"comment"</span><span class="p">:</span><span class="err">//备注</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
       </div>
       <div class="dark-box">
           <div class="lang-selector">
