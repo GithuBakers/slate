@@ -251,6 +251,15 @@
                     <a href="#79b160843f" class="toc-h2 toc-link" data-title="">发起者核算某一任务的预算</a>
                   </li>
                   <li>
+                    <a href="#c26172b727" class="toc-h2 toc-link" data-title="">发起者处理动态计算预算的任务</a>
+                  </li>
+                  <li>
+                    <a href="#dc2be4a5e4" class="toc-h2 toc-link" data-title="">发起者处理未支付任务</a>
+                  </li>
+                  <li>
+                    <a href="#e105d0f87e" class="toc-h2 toc-link" data-title="">发起者获取待处理任务列表(包括未支付和待审核预算)</a>
+                  </li>
+                  <li>
                     <a href="#d6314185d8" class="toc-h2 toc-link" data-title="">发起者查看自己的已发起任务列表</a>
                   </li>
                   <li>
@@ -549,6 +558,42 @@
   </span><span class="s2">"sufficient"</span><span class="p">:</span><span class="err">boolean</span><span class="p">,</span><span class="err">//预算是否充足</span><span class="w">
   </span><span class="s2">"budget"</span><span class="p">:</span><span class="err">int</span><span class="p">,</span><span class="err">//需要的预算结果</span><span class="w">
 </span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='c26172b727'>发起者处理动态计算预算的任务</h2>
+<p><code>POST initiator/task/process/dynamic</code></p>
+
+<blockquote>
+<p>此接口有可能抛出418异常，发生情况是当发起者余额不足的时候</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="err">string</span><span class="p">,</span><span class="err">//任务ID</span><span class="w">
+  </span><span class="s2">"budget"</span><span class="p">:</span><span class="err">int</span><span class="p">,</span><span class="err">//发起者愿意接受的预算</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='dc2be4a5e4'>发起者处理未支付任务</h2>
+<p><code>POST initiator/task/process/poor</code></p>
+
+<blockquote>
+<p>此接口有可能抛出418异常，发生情况是当发起者余额不足的时候</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="err">string</span><span class="p">,</span><span class="err">//任务id</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h2 id='e105d0f87e'>发起者获取待处理任务列表(包括未支付和待审核预算)</h2>
+<p><code>GET initiator/task/process/list</code></p>
+
+<blockquote>
+<p>Dynamic任务取样完成 &amp;&amp; 发起时没钱的任务</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"task_id"</span><span class="p">:</span><span class="err">string</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"task_name"</span><span class="p">:</span><span class="err">string</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cover"</span><span class="p">:</span><span class="err">url</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="err">(RECT</span><span class="p">,</span><span class="err">DESC</span><span class="p">,</span><span class="err">EDGE)</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"state"</span><span class="p">:</span><span class="err">(POOR</span><span class="p">,</span><span class="err">WAIT)</span><span class="p">,</span><span class="err">//poor</span><span class="p">:</span><span class="err">待支付，wait</span><span class="p">:</span><span class="err">待处理</span><span class="w">
+    </span><span class="s2">"budget"</span><span class="p">:</span><span class="err">int</span><span class="p">,</span><span class="err">//poor</span><span class="p">:</span><span class="err">待支付的金额，wait</span><span class="p">:</span><span class="err">此任务系统计算的预算</span><span class="w">
+  </span><span class="p">},</span><span class="err">...</span><span class="w">
+</span><span class="p">]</span><span class="w">
 </span></code></pre><h2 id='d6314185d8'>发起者查看自己的已发起任务列表</h2>
 <p><strong>HTTP REQUEST</strong></p>
 
