@@ -525,24 +525,24 @@
 <p><strong>HTTP REQUEST</strong></p>
 
 <blockquote>
-<p>[linker]reward
-<code>json
-{
-    &quot;type&quot;:(CLASSIC,BUDGET,DYNAMIC)
-    &quot;url_number&quot;:任务url的数量,
-    &quot;aim&quot;:int ,//目标标注人数/张
-    //以下内容三选一：
-    //(CLASSIC)，经典模式
-    &quot;limit&quot;:int, //单个用户最多标注的数量,
-    &quot;reward&quot;:int,//credit
-    //（BUDGET），预算有限
-    &quot;budget&quot;:int,//预算
-    //(DYNAMIC),动态计算预算
-    &quot;sample_budget&quot;:int,//取样阶段的预算
-    &quot;sample_price&quot;:int//取样阶段的价格
-}
-</code></p>
-
+<p>[linker]reward</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="err">(CLASSIC</span><span class="p">,</span><span class="err">BUDGET</span><span class="p">,</span><span class="err">DYNAMIC)</span><span class="w">
+    </span><span class="s2">"url_number"</span><span class="p">:</span><span class="err">任务url的数量</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"aim"</span><span class="p">:</span><span class="err">int</span><span class="w"> </span><span class="p">,</span><span class="err">//目标标注人数/张</span><span class="w">
+    </span><span class="err">//以下内容三选一：</span><span class="w">
+    </span><span class="err">//(CLASSIC)，经典模式</span><span class="w">
+    </span><span class="s2">"limit"</span><span class="p">:</span><span class="err">int</span><span class="p">,</span><span class="w"> </span><span class="err">//单个用户最多标注的数量</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"reward"</span><span class="p">:</span><span class="err">int</span><span class="p">,</span><span class="err">//credit</span><span class="w">
+    </span><span class="err">//（BUDGET），预算有限</span><span class="w">
+    </span><span class="s2">"budget"</span><span class="p">:</span><span class="err">int</span><span class="p">,</span><span class="err">//预算</span><span class="w">
+    </span><span class="err">//(DYNAMIC)</span><span class="p">,</span><span class="err">动态计算预算</span><span class="w">
+    </span><span class="s2">"sample_budget"</span><span class="p">:</span><span class="err">int</span><span class="p">,</span><span class="err">//取样阶段的预算</span><span class="w">
+    </span><span class="s2">"sample_price"</span><span class="p">:</span><span class="err">int//取样阶段的价格</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
 <p>RETURN</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
