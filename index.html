@@ -310,13 +310,19 @@
                     <a href="#5bd73c6465-2" class="toc-h2 toc-link" data-title="">修改个人信息</a>
                   </li>
                   <li>
-                    <a href="#b90eb221f1" class="toc-h2 toc-link" data-title="">获取推荐任务</a>
+                    <a href="#faa99fc0e7" class="toc-h2 toc-link" data-title="">获取推荐任务(未来可能去掉)</a>
                   </li>
                   <li>
                     <a href="#a41fe6ac23" class="toc-h2 toc-link" data-title="">获取任务列表</a>
                   </li>
                   <li>
                     <a href="#e4fe7e2171" class="toc-h2 toc-link" data-title="">获取任务详情</a>
+                  </li>
+                  <li>
+                    <a href="#f6791292bf" class="toc-h2 toc-link" data-title="">竞价</a>
+                  </li>
+                  <li>
+                    <a href="#10" class="toc-h2 toc-link" data-title="10">预览任务（始终返回10张图片）</a>
                   </li>
                   <li>
                     <a href="#d6955c9177" class="toc-h2 toc-link" data-title="">接受任务</a>
@@ -839,19 +845,9 @@
 </span></code></pre><h2 id='ffbd8b3639'>发起者做自己的标准（获取图片列表）</h2>
 <p><code>GET /initiator/criterion/img</code></p>
 
-<table><thead>
-<tr>
-<th>参数名</th>
-<th>参数意义</th>
-<th>参数类型</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>criterion_id</td>
-<td>标准ID</td>
-<td>string</td>
-</tr>
-</tbody></table>
+<p>|    参数名                            |    参数意义    |    参数类型    |
+| ------- ------- ------- ------------    |    -------- ----- ----- ----- |    -------- ---- ---- ---- |
+|    criterion_id    |    标准ID            |    string            |</p>
 
 <blockquote>
 <p>RETURN</p>
@@ -866,9 +862,9 @@
 </span><span class="p">]</span><span class="w">
 </span></code></pre><h2 id='9533bb2e85'>发起者做自己的标准</h2>
 <p><code>POST /initiator/criterion/img</code>
-|参数名|参数意义|参数类型|
-|-----|---|----|
-|criterion_id|标准ID|string|</p>
+|   参数名                     |   参数意义   |   参数类型   |
+| ------- ------- ------------   |   -------- ----- ----- |   -------- ---- ---- |
+|   criterion_id   |   标准ID         |   string         |</p>
 
 <blockquote>
 <p>REQUEST</p>
@@ -1054,7 +1050,7 @@ GET /initiator/task/finished_task/{task_name}
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="kc">true</span><span class="err">/</span><span class="kc">false</span><span class="w">
 
-</span></code></pre><h2 id='b90eb221f1'>获取推荐任务</h2>
+</span></code></pre><h2 id='faa99fc0e7'>获取推荐任务(未来可能去掉)</h2>
 <p><strong>HTTP REQUEST</strong></p>
 
 <p><code>GET /worker/recommend_task</code></p>
@@ -1101,7 +1097,8 @@ GET /initiator/task/finished_task/{task_name}
     </span><span class="s2">"cover"</span><span class="p">:</span><span class="err">任务封面</span><span class="p">,</span><span class="w">
     </span><span class="s2">"type"</span><span class="p">:</span><span class="err">任务类型</span><span class="p">,</span><span class="w">
     </span><span class="s2">"task_name"</span><span class="p">:</span><span class="err">任务名</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"reward"</span><span class="p">:</span><span class="err">奖励</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="s2">"reward"</span><span class="p">:</span><span class="err">奖励</span><span class="p">,</span><span class="w"> </span><span class="err">@Deprecated</span><span class="w">
+    </span><span class="s2">"suggest"</span><span class="p">:</span><span class="err">建议价格</span><span class="p">,</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="err">...</span><span class="w">
 </span><span class="p">]</span><span class="w">
@@ -1119,8 +1116,16 @@ GET /initiator/task/finished_task/{task_name}
   </span><span class="s2">"task_name"</span><span class="p">:</span><span class="err">string</span><span class="p">,</span><span class="w">
   </span><span class="s2">"cover"</span><span class="p">:</span><span class="err">url</span><span class="p">,</span><span class="w">
   </span><span class="s2">"type"</span><span class="p">:</span><span class="err">(RECT</span><span class="p">,</span><span class="err">DESC</span><span class="p">,</span><span class="err">EDGE)</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"limit"</span><span class="p">:</span><span class="err">int</span><span class="w"> </span><span class="err">单个用户最多标注的数量</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"reward"</span><span class="p">:</span><span class="err">int</span><span class="w"> </span><span class="err">credit/</span><span class="mi">10</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"reward_way"</span><span class="p">:</span><span class="err">(CLASSIC</span><span class="p">,</span><span class="w"> </span><span class="err">BID)</span><span class="p">,</span><span class="err">//经典还是竞价</span><span class="w">
+  </span><span class="err">//</span><span class="w"> </span><span class="s2">"limit"</span><span class="p">:</span><span class="err">int</span><span class="w"> </span><span class="err">单个用户最多标注的数量</span><span class="p">,</span><span class="w">
+  </span><span class="err">//</span><span class="w"> </span><span class="s2">"reward"</span><span class="p">:</span><span class="err">int</span><span class="w"> </span><span class="err">credit/</span><span class="mi">10</span><span class="p">,</span><span class="err">@Deprecated</span><span class="w">
+
+  </span><span class="err">//classic</span><span class="w"> </span><span class="err">||</span><span class="w"> </span><span class="err">(!classic</span><span class="w"> </span><span class="err">&amp;&amp;</span><span class="w"> </span><span class="err">has_bid)</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"price"</span><span class="p">:</span><span class="err">int</span><span class="p">,</span><span class="err">//系统给出的价格</span><span class="w">
+  </span><span class="s2">"work"</span><span class="p">:</span><span class="err">int</span><span class="p">,</span><span class="err">//任务量</span><span class="w">
+  </span><span class="err">//</span><span class="p">}</span><span class="w">
+
+  </span><span class="s2">"has_bid"</span><span class="p">:</span><span class="err">boolean</span><span class="p">,</span><span class="err">//是否有竞价了</span><span class="w">
   </span><span class="s2">"requirement"</span><span class="p">:</span><span class="err">string</span><span class="p">,</span><span class="w">
   </span><span class="s2">"keywords"</span><span class="p">:[</span><span class="w">  </span><span class="err">//标注的关键词</span><span class="w">
     </span><span class="err">string</span><span class="mi">1</span><span class="p">,</span><span class="err">string</span><span class="mi">2</span><span class="p">,</span><span class="err">...</span><span class="w">
@@ -1133,6 +1138,47 @@ GET /initiator/task/finished_task/{task_name}
   </span><span class="p">]</span><span class="w"> 
 </span><span class="p">}</span><span class="w">
 
+</span></code></pre><h2 id='f6791292bf'>竞价</h2>
+<p><code>POST /worker/task/bid</code></p>
+
+<blockquote>
+<p>418</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="err">任务id</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"price"</span><span class="p">:</span><span class="err">竞价</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"work"</span><span class="p">:</span><span class="err">工作量</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<blockquote>
+<p>RETURN</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"price"</span><span class="p">:</span><span class="err">竞价</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"work"</span><span class="p">:</span><span class="err">工作量</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='10'>预览任务（始终返回10张图片）</h2>
+<p><code>GET /worker/task/preview/task?taskID=id</code></p>
+
+<table><thead>
+<tr>
+<th>变量名</th>
+<th>类型</th>
+<th>备注</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>taskID</td>
+<td>string</td>
+<td>任务ID</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>RETURN</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="err">url</span><span class="mi">1</span><span class="p">,</span><span class="err">url</span><span class="mi">2</span><span class="p">,</span><span class="err">url</span><span class="mi">3</span><span class="p">,</span><span class="err">...</span><span class="p">]</span><span class="w">
 </span></code></pre><h2 id='d6955c9177'>接受任务</h2>
 <p><strong>HTTP REQUEST</strong></p>
 
