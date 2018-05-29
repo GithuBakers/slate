@@ -1212,6 +1212,7 @@ GET /initiator/task/finished_task/{task_name}
   </span><span class="s2">"id"</span><span class="p">:</span><span class="err">图片ID</span><span class="p">,</span><span class="w">
   </span><span class="s2">"name"</span><span class="p">:</span><span class="err">(String)图片名</span><span class="p">,</span><span class="w">
   </span><span class="s2">"raw"</span><span class="p">:</span><span class="err">(String)原图的URL</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"worker_id"</span><span class="p">:</span><span class="err">//qual</span><span class="w"> </span><span class="err">任务的情况下，被评价工人的ID</span><span class="w">
   </span><span class="s2">"tags"</span><span class="p">:[</span><span class="w">
     </span><span class="p">{},</span><span class="err">...</span><span class="w">
   </span><span class="p">]</span><span class="w"> 
@@ -1229,18 +1230,23 @@ GET /initiator/task/finished_task/{task_name}
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
 
   </span><span class="s2">"id"</span><span class="p">:</span><span class="err">图片id</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"worker_id"</span><span class="p">:</span><span class="err">string</span><span class="p">,</span><span class="err">//仅在qual情况下，返回原来标注的工人ID</span><span class="w">
   </span><span class="s2">"tags"</span><span class="p">:</span><span class="w">
   </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"id"</span><span class="p">:</span><span class="err">(String)标注的ID</span><span class="p">,</span><span class="w">
       </span><span class="s2">"mark"</span><span class="p">:{</span><span class="w">
-        </span><span class="s2">"type"</span><span class="p">:</span><span class="err">（EDGE</span><span class="p">,</span><span class="w"> </span><span class="err">DESC</span><span class="p">,</span><span class="w"> </span><span class="err">RECT</span><span class="p">,</span><span class="err">QUAL)</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="err">（EDGE</span><span class="p">,</span><span class="w"> </span><span class="err">DESC</span><span class="p">,</span><span class="w"> </span><span class="err">RECT</span><span class="p">,</span><span class="w"> </span><span class="err">QUAL)</span><span class="w">
+        </span><span class="err">//if(type==QUAL)</span><span class="p">:</span><span class="w">
+        </span><span class="s2">"result"</span><span class="p">:</span><span class="err">boolean</span><span class="p">,</span><span class="w">
+        </span><span class="err">//endif</span><span class="w">
       </span><span class="p">},</span><span class="err">//某种类型的标记，**必须包含**类型字段</span><span class="w">
-      </span><span class="s2">"comment"</span><span class="p">:</span><span class="err">备注</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="err">...</span><span class="w">
-  </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
+      </span><span class="s2">"comment"</span><span class="p">:</span><span class="err">备注</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"
+    },
+    ...
+  ]
+}
 </span></code></pre>
 <blockquote>
 <p>RETURN</p>
