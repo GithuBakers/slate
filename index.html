@@ -539,7 +539,13 @@
 <blockquote>
 <p>RETURN</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="kc">true</span><span class="err">/</span><span class="kc">false</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"successful"</span><span class="p">:</span><span class="err">boolean</span><span class="p">,</span><span class="err">//是否扣款成功</span><span class="w">
+  </span><span class="err">//if(!successful)</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"remain"</span><span class="p">:</span><span class="err">Integer</span><span class="p">,</span><span class="err">//发起者剩余预算</span><span class="w">
+  </span><span class="s2">"require"</span><span class="p">:</span><span class="err">Integer//任务所需预算</span><span class="w">
+  </span><span class="err">//</span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre><h2 id='79b160843f'>发起者核算某一任务的预算</h2>
 <p><code>POST /initiator/budget</code></p>
 
