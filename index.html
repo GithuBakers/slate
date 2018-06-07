@@ -366,6 +366,9 @@
                   <li>
                     <a href="#cac5be2fb6" class="toc-h2 toc-link" data-title="">提交对某一【工人专业认证申请】的处理结果</a>
                   </li>
+                  <li>
+                    <a href="#6abbdf478b" class="toc-h2 toc-link" data-title="">任务评价</a>
+                  </li>
               </ul>
           </li>
       </div>
@@ -1014,6 +1017,9 @@ GET /initiator/task/finished_task/{task_name}
   </span><span class="s2">"rank"</span><span class="p">:</span><span class="err">用户的</span><span class="w"> </span><span class="err">排名？</span><span class="p">,</span><span class="w">
   </span><span class="s2">"sex"</span><span class="p">:</span><span class="err">(MALE</span><span class="p">,</span><span class="err">FEMALE</span><span class="p">,</span><span class="err">NA)</span><span class="p">,</span><span class="w">
   </span><span class="s2">"birthday"</span><span class="p">:</span><span class="err">YYYY-MM-DD</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"hobbies"</span><span class="p">:[</span><span class="w">
+    </span><span class="err">(PLANT</span><span class="p">,</span><span class="w"> </span><span class="err">FOOD</span><span class="p">,</span><span class="w"> </span><span class="err">ANIMAL</span><span class="p">,</span><span class="w"> </span><span class="err">COMPUTER</span><span class="p">,</span><span class="w"> </span><span class="err">LIFE</span><span class="p">,</span><span class="w"> </span><span class="err">CAR</span><span class="p">,</span><span class="w"> </span><span class="err">MEDICAL</span><span class="p">,</span><span class="w"> </span><span class="err">SPORT</span><span class="p">,</span><span class="w"> </span><span class="err">OTHERS)</span><span class="w">
+  </span><span class="p">],</span><span class="w">
   </span><span class="s2">"dependencies"</span><span class="p">:[</span><span class="w"> 
     </span><span class="p">{},</span><span class="err">...//标准对象的列表</span><span class="w">
   </span><span class="p">],</span><span class="w">
@@ -1059,7 +1065,10 @@ GET /initiator/task/finished_task/{task_name}
   </span><span class="s2">"avatar"</span><span class="p">:</span><span class="err">url</span><span class="p">,</span><span class="w">
   </span><span class="s2">"nick_name"</span><span class="p">:</span><span class="err">string</span><span class="p">,</span><span class="w">
   </span><span class="s2">"sex"</span><span class="p">:</span><span class="err">(MALE</span><span class="p">,</span><span class="err">FEMALE</span><span class="p">,</span><span class="err">NA)</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"birthday"</span><span class="p">:</span><span class="err">YYYY-MM-DD</span><span class="w">
+  </span><span class="s2">"birthday"</span><span class="p">:</span><span class="err">YYYY-MM-DD</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"hobbies"</span><span class="p">:[</span><span class="w">
+    </span><span class="err">(PLANT</span><span class="p">,</span><span class="w"> </span><span class="err">FOOD</span><span class="p">,</span><span class="w"> </span><span class="err">ANIMAL</span><span class="p">,</span><span class="w"> </span><span class="err">COMPUTER</span><span class="p">,</span><span class="w"> </span><span class="err">LIFE</span><span class="p">,</span><span class="w"> </span><span class="err">CAR</span><span class="p">,</span><span class="w"> </span><span class="err">MEDICAL</span><span class="p">,</span><span class="w"> </span><span class="err">SPORT</span><span class="p">,</span><span class="w"> </span><span class="err">OTHERS)</span><span class="w">
+  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre>
@@ -1117,6 +1126,14 @@ GET /initiator/task/finished_task/{task_name}
     </span><span class="s2">"task_name"</span><span class="p">:</span><span class="err">任务名</span><span class="p">,</span><span class="w">
     </span><span class="err">//</span><span class="w"> </span><span class="s2">"reward"</span><span class="p">:</span><span class="err">奖励</span><span class="p">,</span><span class="w"> </span><span class="err">@Deprecated</span><span class="w">
     </span><span class="s2">"suggest"</span><span class="p">:</span><span class="err">建议价格</span><span class="p">,</span><span class="w">
+
+    </span><span class="s2">"hobbies"</span><span class="p">:[</span><span class="w">
+    </span><span class="err">(PLANT</span><span class="p">,</span><span class="w"> </span><span class="err">FOOD</span><span class="p">,</span><span class="w"> </span><span class="err">ANIMAL</span><span class="p">,</span><span class="w"> </span><span class="err">COMPUTER</span><span class="p">,</span><span class="w"> </span><span class="err">LIFE</span><span class="p">,</span><span class="w"> </span><span class="err">CAR</span><span class="p">,</span><span class="w"> </span><span class="err">MEDICAL</span><span class="p">,</span><span class="w"> </span><span class="err">SPORT</span><span class="p">,</span><span class="w"> </span><span class="err">OTHERS)</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="err">//任务评价</span><span class="w">
+    </span><span class="s2">"price"</span><span class="p">:,</span><span class="w">
+    </span><span class="s2">"time"</span><span class="p">:,</span><span class="w">
+    </span><span class="s2">"hard"</span><span class="p">:</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="err">...</span><span class="w">
 </span><span class="p">]</span><span class="w">
@@ -1148,12 +1165,21 @@ GET /initiator/task/finished_task/{task_name}
   </span><span class="s2">"keywords"</span><span class="p">:[</span><span class="w">  </span><span class="err">//标注的关键词</span><span class="w">
     </span><span class="err">string</span><span class="mi">1</span><span class="p">,</span><span class="err">string</span><span class="mi">2</span><span class="p">,</span><span class="err">...</span><span class="w">
   </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"hobbies"</span><span class="p">:[</span><span class="w">
+    </span><span class="err">(PLANT</span><span class="p">,</span><span class="w"> </span><span class="err">FOOD</span><span class="p">,</span><span class="w"> </span><span class="err">ANIMAL</span><span class="p">,</span><span class="w"> </span><span class="err">COMPUTER</span><span class="p">,</span><span class="w"> </span><span class="err">LIFE</span><span class="p">,</span><span class="w"> </span><span class="err">CAR</span><span class="p">,</span><span class="w"> </span><span class="err">MEDICAL</span><span class="p">,</span><span class="w"> </span><span class="err">SPORT</span><span class="p">,</span><span class="w"> </span><span class="err">OTHERS)</span><span class="w">
+  </span><span class="p">],</span><span class="w">
   </span><span class="s2">"dependencies"</span><span class="p">:[</span><span class="w">  
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"qualified"</span><span class="p">:</span><span class="err">boolean</span><span class="p">,</span><span class="err">//用户是否完成了这一项</span><span class="w">
       </span><span class="err">//其余部分字段和criterion</span><span class="w">
     </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w"> 
+  </span><span class="p">],</span><span class="w">
+
+  </span><span class="err">//任务评价</span><span class="w">
+    </span><span class="s2">"price"</span><span class="p">:,</span><span class="w">
+    </span><span class="s2">"time"</span><span class="p">:,</span><span class="w">
+    </span><span class="s2">"hard"</span><span class="p">:</span><span class="w">
+
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre><h2 id='f6791292bf'>竞价</h2>
@@ -1406,8 +1432,33 @@ GET /initiator/task/finished_task/{task_name}
   </span><span class="s2">"result"</span><span class="p">:</span><span class="err">(AC</span><span class="p">,</span><span class="err">WA</span><span class="p">,</span><span class="err">PANDING)</span><span class="p">,</span><span class="err">//认证结果</span><span class="w">
   </span><span class="s2">"comment"</span><span class="p">:</span><span class="err">//备注</span><span class="w">
 </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>**********************<strong><em>新接口（们）</em></strong>********************</p>
+<h2 id='6abbdf478b'>任务评价</h2>
+<p><code>POST worker/task/comment</code></p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"task_id"</span><span class="p">:,</span><span class="err">//任务ID</span><span class="w">
+  </span><span class="s2">"worker_id"</span><span class="p">:,</span><span class="err">//工人ID</span><span class="w">
+  </span><span class="s2">"price"</span><span class="p">:,</span><span class="err">//关于价格是否满意</span><span class="w">
+  </span><span class="s2">"time"</span><span class="p">:,</span><span class="err">//关于花费时间</span><span class="w">
+  </span><span class="s2">"hard"</span><span class="p">:</span><span class="err">//难度</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
 
 </span></code></pre>
+<blockquote>
+<p>RETURN</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"money"</span><span class="p">:</span><span class="err">//随机红包</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>//TODO:
+神奇图片：
+  工人信誉值
+  QUAL不要有神奇图片
+  任务加字段（备选神奇图片 &amp; 可疑 List&lt;(工人,图片)&gt; )</p>
+
       </div>
       <div class="dark-box">
           <div class="lang-selector">
