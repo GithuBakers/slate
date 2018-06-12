@@ -248,6 +248,9 @@
                     <a href="#6b717cac51" class="toc-h2 toc-link" data-title="">新建任务</a>
                   </li>
                   <li>
+                    <a href="#ffc45993ec" class="toc-h2 toc-link" data-title="">发起者核算某一任务的预算(划掉！！！被删除了！！！！！)</a>
+                  </li>
+                  <li>
                     <a href="#c26172b727" class="toc-h2 toc-link" data-title="">发起者处理动态计算预算的任务</a>
                   </li>
                   <li>
@@ -546,41 +549,35 @@
   </span><span class="s2">"require"</span><span class="p">:</span><span class="err">Integer//任务所需预算</span><span class="w">
   </span><span class="err">//</span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='ffc45993ec'>发起者核算某一任务的预算(划掉！！！被删除了！！！！！)</h2>
+<p><strong>HTTP REQUEST</strong></p>
+
+<blockquote>
+<p>[linker]reward</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="err">(CLASSIC</span><span class="p">,</span><span class="err">BUDGET</span><span class="p">,</span><span class="err">DYNAMIC)</span><span class="w">
+    </span><span class="s2">"url_number"</span><span class="p">:</span><span class="err">任务url的数量</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"aim"</span><span class="p">:</span><span class="err">int</span><span class="w"> </span><span class="p">,</span><span class="err">//目标标注人数/张</span><span class="w">
+    </span><span class="err">//以下内容三选一：</span><span class="w">
+    </span><span class="err">//(CLASSIC)，经典模式</span><span class="w">
+    </span><span class="s2">"limit"</span><span class="p">:</span><span class="err">int</span><span class="p">,</span><span class="w"> </span><span class="err">//单个用户最多标注的数量</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"reward"</span><span class="p">:</span><span class="err">int</span><span class="p">,</span><span class="err">//credit</span><span class="w">
+    </span><span class="err">//（BUDGET），预算有限</span><span class="w">
+    </span><span class="s2">"budget"</span><span class="p">:</span><span class="err">int</span><span class="p">,</span><span class="err">//预算</span><span class="w">
+    </span><span class="err">//(DYNAMIC)</span><span class="p">,</span><span class="err">动态计算预算</span><span class="w">
+    </span><span class="s2">"sample_budget"</span><span class="p">:</span><span class="err">int</span><span class="p">,</span><span class="err">//取样阶段的预算</span><span class="w">
+    </span><span class="s2">"sample_price"</span><span class="p">:</span><span class="err">int//取样阶段的价格</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
-<!-- 
-## 发起者核算某一任务的预算
-`POST /initiator/budget`
-
-**HTTP REQUEST**
-
->[linker]reward
-
-```json
-{
-    "type":(CLASSIC,BUDGET,DYNAMIC)
-    "url_number":任务url的数量,
-    "aim":int ,//目标标注人数/张
-    //以下内容三选一：
-    //(CLASSIC)，经典模式
-    "limit":int, //单个用户最多标注的数量,
-    "reward":int,//credit
-    //（BUDGET），预算有限
-    "budget":int,//预算
-    //(DYNAMIC),动态计算预算
-    "sample_budget":int,//取样阶段的预算
-    "sample_price":int//取样阶段的价格
-}
-```
-
-> RETURN
-
-```json
-{
-  "sufficient":boolean,//预算是否充足
-  "budget":int,//需要的预算结果
-}
-``` -->
-<h2 id='c26172b727'>发起者处理动态计算预算的任务</h2>
+<blockquote>
+<p>RETURN</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"sufficient"</span><span class="p">:</span><span class="err">boolean</span><span class="p">,</span><span class="err">//预算是否充足</span><span class="w">
+  </span><span class="s2">"budget"</span><span class="p">:</span><span class="err">int</span><span class="p">,</span><span class="err">//需要的预算结果</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='c26172b727'>发起者处理动态计算预算的任务</h2>
 <p><code>POST initiator/task/process/dynamic</code></p>
 
 <blockquote>
