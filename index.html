@@ -944,6 +944,8 @@ GET /initiator/task/finished_task/{task_name}
 <blockquote>
 <p>RETURN</p>
 </blockquote>
+
+<p><strong>这个接口已经改为返回Image了！</strong></p>
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w"> 
   </span><span class="p">{</span><span class="w"> 
   </span><span class="s2">"id"</span><span class="p">:</span><span class="err">图片ID</span><span class="p">,</span><span class="w">
@@ -1248,7 +1250,7 @@ GET /initiator/task/finished_task/{task_name}
   </span><span class="s2">"id"</span><span class="p">:</span><span class="err">图片ID</span><span class="p">,</span><span class="w">
   </span><span class="s2">"name"</span><span class="p">:</span><span class="err">(String)图片名</span><span class="p">,</span><span class="w">
   </span><span class="s2">"raw"</span><span class="p">:</span><span class="err">(String)原图的URL</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"type"</span><span class="p">:</span><span class="err">(DESC</span><span class="p">,</span><span class="w"> </span><span class="err">EDGE</span><span class="p">,</span><span class="w"> </span><span class="err">RECT)</span><span class="p">,</span><span class="err">//仅在qual</span><span class="w"> </span><span class="err">任务的情况下有效，表示本张图片的标注类型</span><span class="w">
+  </span><span class="s2">"mark_type"</span><span class="p">:</span><span class="err">(DESC</span><span class="p">,</span><span class="w"> </span><span class="err">EDGE</span><span class="p">,</span><span class="w"> </span><span class="err">RECT)</span><span class="p">,</span><span class="err">//仅在qual</span><span class="w"> </span><span class="err">任务的情况下有效，表示本张图片的标注类型</span><span class="w">
   </span><span class="s2">"worker_id"</span><span class="p">:</span><span class="err">//qual</span><span class="w"> </span><span class="err">任务的情况下，被评价工人的ID</span><span class="w">
   </span><span class="s2">"tags"</span><span class="p">:[</span><span class="w">
     </span><span class="p">{},</span><span class="err">...</span><span class="w">
@@ -1304,7 +1306,7 @@ GET /initiator/task/finished_task/{task_name}
     </span><span class="s2">"cover"</span><span class="p">:</span><span class="err">url</span><span class="p">,</span><span class="w">
     </span><span class="s2">"type"</span><span class="p">:</span><span class="err">(RECT</span><span class="p">,</span><span class="err">DESC</span><span class="p">,</span><span class="err">EDGE</span><span class="p">,</span><span class="err">QUAL)</span><span class="p">,</span><span class="w">
     </span><span class="s2">"actual_number"</span><span class="p">:</span><span class="err">现在已标注多少张了</span><span class="p">,</span><span class="w">
-    </span><span class="err">//</span><span class="w"> </span><span class="s2">"total_reward"</span><span class="p">:</span><span class="err">获取的所有的奖励数</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total_reward"</span><span class="p">:</span><span class="err">一共要标注的张数</span><span class="p">,</span><span class="w">
     </span><span class="s2">"finished"</span><span class="p">:</span><span class="err">bool</span><span class="w">
 
   </span><span class="p">},</span><span class="w">
