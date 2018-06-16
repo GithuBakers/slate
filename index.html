@@ -325,9 +325,6 @@
                     <a href="#f6791292bf" class="toc-h2 toc-link" data-title="">竞价</a>
                   </li>
                   <li>
-                    <a href="#10" class="toc-h2 toc-link" data-title="10">预览任务（始终返回10张图片）</a>
-                  </li>
-                  <li>
                     <a href="#d6955c9177" class="toc-h2 toc-link" data-title="">接受任务</a>
                   </li>
                   <li>
@@ -1203,29 +1200,23 @@ GET /initiator/task/finished_task/{task_name}
   </span><span class="s2">"work"</span><span class="p">:</span><span class="err">工作量</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p><strong>暂时跳过</strong></p>
-<h2 id='10'>预览任务（始终返回10张图片）</h2>
-<p><code>GET /worker/task/preview/task?taskID=id</code></p>
+<!-- **暂时跳过**
 
-<table><thead>
-<tr>
-<th>变量名</th>
-<th>类型</th>
-<th>备注</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>taskID</td>
-<td>string</td>
-<td>任务ID</td>
-</tr>
-</tbody></table>
+## 预览任务（始终返回10张图片）
 
-<blockquote>
-<p>RETURN</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="err">url</span><span class="mi">1</span><span class="p">,</span><span class="err">url</span><span class="mi">2</span><span class="p">,</span><span class="err">url</span><span class="mi">3</span><span class="p">,</span><span class="err">...</span><span class="p">]</span><span class="w">
-</span></code></pre><h2 id='d6955c9177'>接受任务</h2>
+`GET /worker/task/preview/task?taskID=id`
+
+| 变量名 | 类型   | 备注   |
+| ------ | ------ | ------ |
+| taskID | string | 任务ID |
+
+> RETURN
+
+```json
+[url1,url2,url3,...]
+```
+ -->
+<h2 id='d6955c9177'>接受任务</h2>
 <p><strong>HTTP REQUEST</strong></p>
 
 <p><code>POST /worker/task/received_task/{task_id}</code></p>
