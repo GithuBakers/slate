@@ -369,6 +369,9 @@
                   <li>
                     <a href="#6abbdf478b" class="toc-h2 toc-link" data-title="">任务评价</a>
                   </li>
+                  <li>
+                    <a href="#2a979d731c" class="toc-h2 toc-link" data-title="">重新发起任务</a>
+                  </li>
               </ul>
           </li>
       </div>
@@ -521,7 +524,7 @@
   </span><span class="s2">"keywords"</span><span class="p">:[</span><span class="w">  </span><span class="err">//标注的关键词</span><span class="w">
     </span><span class="err">string</span><span class="mi">1</span><span class="p">,</span><span class="err">string</span><span class="mi">2</span><span class="p">,</span><span class="err">...</span><span class="w">
   </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"dependencies"</span><span class="p">:[</span><span class="w">  </span><span class="err">//任务依赖的标准集（标准集id）</span><span class="w">
+  </span><span class="s2">"dependency_id"</span><span class="p">:[</span><span class="w">  </span><span class="err">//任务依赖的标准集（标准集id）</span><span class="w">
     </span><span class="err">string</span><span class="mi">1</span><span class="p">,</span><span class="err">string</span><span class="mi">2</span><span class="p">,</span><span class="err">.....</span><span class="w">
   </span><span class="p">],</span><span class="w">
   </span><span class="s2">"reward_way"</span><span class="p">:{</span><span class="w">
@@ -1265,7 +1268,7 @@ GET /initiator/task/finished_task/{task_name}
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
 
   </span><span class="s2">"id"</span><span class="p">:</span><span class="err">图片id</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"worker_id"</span><span class="p">:</span><span class="err">string</span><span class="p">,</span><span class="err">//仅在qual情况下，返回原来标注的工人ID</span><span class="w">
+  </span><span class="s2">"worker_id"</span><span class="p">:</span><span class="err">sring</span><span class="p">,</span><span class="err">//仅在qual情况下，返回原来标注的工人ID</span><span class="w">
   </span><span class="s2">"tags"</span><span class="p">:</span><span class="w">
   </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -1447,13 +1450,32 @@ GET /initiator/task/finished_task/{task_name}
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"money"</span><span class="p">:</span><span class="err">//随机红包</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>//TODO:
-神奇图片：
-  工人信誉值
-  QUAL不要有神奇图片
-  任务加字段（备选神奇图片 &amp; 可疑 List&lt;(工人,图片)&gt; )</p>
+</span></code></pre><h2 id='2a979d731c'>重新发起任务</h2>
+<p><code>POST initiator/task/renew</code></p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"task_id"</span><span class="p">:</span><span class="err">string</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ddl"</span><span class="p">:</span><span class="err">string</span><span class="p">,</span><span class="err">//发起者的预期结束日期，格式为yyyy-MM-dd</span><span class="w">
+  </span><span class="s2">"reward_way"</span><span class="p">:{</span><span class="w">
+    </span><span class="err">//参见</span><span class="p">[</span><span class="err">linker</span><span class="p">]</span><span class="err">reward</span><span class="w">
+  </span><span class="p">},</span><span class="w">
 
+  </span><span class="err">//</span><span class="p">{</span><span class="err">quality</span><span class="w">
+  </span><span class="s2">"quality_budget"</span><span class="p">:</span><span class="err">int</span><span class="p">,</span><span class="err">//质量评估的预算</span><span class="w">
+  </span><span class="err">//</span><span class="p">}</span><span class="w">
+
+</span><span class="p">}</span><span class="w">
+
+</span><span class="err">&gt;RETURN</span><span class="w">
+
+</span><span class="err">```json</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"successful"</span><span class="p">:</span><span class="err">boolean</span><span class="p">,</span><span class="err">//是否扣款成功</span><span class="w">
+  </span><span class="err">//if(!successful)</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"remain"</span><span class="p">:</span><span class="err">Integer</span><span class="p">,</span><span class="err">//发起者剩余预算</span><span class="w">
+  </span><span class="s2">"require"</span><span class="p">:</span><span class="err">Integer//任务所需预算</span><span class="w">
+  </span><span class="err">//</span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
       </div>
       <div class="dark-box">
           <div class="lang-selector">
